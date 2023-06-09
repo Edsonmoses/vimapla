@@ -180,3 +180,44 @@ require_once ASTRA_THEME_DIR . 'inc/core/markup/class-astra-markup.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-filters.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-hooks.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
+
+add_action('wp_footer', 'hide_cart');
+    function hide_cart() {
+        if(WC()->cart->get_cart_contents_count() == 0)
+        echo '<style type="text/css">.ast-site-header-cart .ast-addon-cart-wrap .ast-icon-shopping-basket {display:none}
+		.ast-site-header-cart .ast-addon-cart-wrap i.astra-icon:after{display:none}</style>';
+    }
+add_filter( 'woocommerce_product_categories_widget_args', 'woo_product_cat_widget_args' );
+// Disable wp login
+function custom_login_page() {
+$new_login_page_url = home_url( '/login/' ); // new login page
+global $pagenow;
+if( $pagenow == "wp-login.php" && $_SERVER['REQUEST_METHOD'] == 'GET') {
+wp_redirect($new_login_page_url);
+exit;
+}
+}
+if(!is_user_logged_in()){
+add_action('init','custom_login_page');
+}
+
+remove_action( 'woocommerce_register_form', 'dokan_seller_reg_form_fields' );
+
+add_action( 'woocommerce_register_form', 'dokan_custom_reg_vendor_selected', 12 );
+function dokan_custom_reg_vendor_selected() {
+    $postdata = wc_clean( $_POST ); // WPCS: CSRF ok, input var ok.
+    $role = isset( $postdata['role'] ) ? $postdata['role'] : 'seller';
+    $role_style = ( $role == 'customer' ) ? 'display:none' : '';
+    dokan_get_template_part( 'global/seller-registration-form', '', array(
+        'postdata' => $postdata,
+        'role' => $role,
+        'role_style' => $role_style
+    ) );
+}
+
+add_action( 'init', 'deregister_post_type' );
+if ( ! function_exists( 'deregister_post_type' ) ) {
+    function deregister_post_type() {
+        unregister_post_type( 'toplevel_page_astra' );
+    }
+}

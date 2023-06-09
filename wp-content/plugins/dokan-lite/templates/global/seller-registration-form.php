@@ -80,7 +80,7 @@
 
 <?php do_action( 'dokan_reg_form_field' ); ?>
 
-<p class="form-row form-group user-role vendor-customer-registration">
+<?php /*<p class="form-row form-group user-role vendor-customer-registration">
 
     <label class="radio">
         <input type="radio" name="role" value="customer"<?php checked( $role, 'customer' ); ?>>
@@ -93,4 +93,4 @@
     </label>
     <?php do_action( 'dokan_registration_form_role', $role ); ?>
 
-</p>
+</p>*/ ?>

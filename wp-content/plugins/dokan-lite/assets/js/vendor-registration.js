@@ -39,16 +39,16 @@ var Dokan_Vendor_Registration = {
     showSellerForm: function() {
         var value = $(this).val();
 
-        if ( value === 'seller') {
+        if ( value === 'customer') {
             $('.show_if_seller').find( 'input, select' ).removeAttr( 'disabled' );
             $('.show_if_seller').slideDown();
 
             if ( $( '.tc_check_box' ).length > 0 ) {
-                $('button[name=register]').attr('disabled','disabled');
+                $('button[name=register]').removeAttr('disabled','disabled');
             }
 
         } else {
-            $('.show_if_seller').find( 'input, select' ).attr( 'disabled', 'disabled' );
+            $('.show_if_seller').find( 'input, select' ).removeAttr( 'disabled', 'disabled' );
             $('.show_if_seller').slideUp();
 
             if ( $( '.tc_check_box' ).length > 0 ) {
@@ -65,9 +65,9 @@ var Dokan_Vendor_Registration = {
             $( 'button[name=register]' ).removeAttr( 'disabled' );
             $( 'input[name=dokan_migration]' ).removeAttr( 'disabled' );
         } else {
-            $( 'input[name=register]' ).attr( 'disabled', 'disabled' );
-            $( 'button[name=register]' ).attr( 'disabled', 'disabled' );
-            $( 'input[name=dokan_migration]' ).attr( 'disabled', 'disabled' );
+            $( 'input[name=register]' ).removeAttr( 'disabled', 'disabled' );
+            $( 'button[name=register]' ).removeAttr( 'disabled', 'disabled' );
+            $( 'input[name=dokan_migration]' ).removeAttr( 'disabled', 'disabled' );
         }
     },
 
@@ -221,7 +221,7 @@ $(function() {
     window.Dokan_Vendor_Registration = Dokan_Vendor_Registration;
     window.Dokan_Vendor_Registration.init();
 
-    $('.show_if_seller').find( 'input, select' ).attr( 'disabled', 'disabled' );
+    $('.show_if_seller').find( 'input, select' ).removeAttr( 'disabled', 'disabled' );
 
     // trigger change if there is an error while registering
     var shouldTrigger = $( '.woocommerce ul' ).hasClass( 'woocommerce-error' ) && ! $( '.show_if_seller' ).is( ':hidden' );
@@ -234,8 +234,8 @@ $(function() {
 
     // disable migration button if checkbox isn't checked
     if ( $( '.tc_check_box' ).length > 0 ){
-        $( 'input[name=dokan_migration]' ).attr( 'disabled', 'disabled' );
-        $( 'input[name=register]' ).attr( 'disabled', 'disabled' );
+        $( 'input[name=dokan_migration]' ).removeAttr( 'disabled', 'disabled' );
+        $( 'input[name=register]' ).removeAttr( 'disabled', 'disabled' );
     }
 });
 
