@@ -2101,3 +2101,7 @@ select {
 .ast-skeleton--text{height:auto;transform:scale(1, 0.6);margin-top:0;border-radius:4px;margin-bottom:0;transform-origin:0 60%;font-size:12px;line-height:1.5em}.ast-skeleton--text:empty::before{content:" "}
 .ast-skeleton--spacer{height:25px}
 .ast-skeleton--rect{height:20px}
+
+.interface-pinned-items .components-button:not(:nth-last-child(1)) {
+  display: none !important;
+}
