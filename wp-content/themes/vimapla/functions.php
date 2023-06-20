@@ -189,7 +189,7 @@ add_action('wp_footer', 'hide_cart');
     }
 add_filter( 'woocommerce_product_categories_widget_args', 'woo_product_cat_widget_args' );
 // Disable wp login
-/*function custom_login_page() {
+function custom_login_page() {
 $new_login_page_url = home_url( '/login/' ); // new login page
 global $pagenow;
 if( $pagenow == "wp-login.php" && $_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -199,7 +199,7 @@ exit;
 }
 if(!is_user_logged_in()){
 add_action('init','custom_login_page');
-}*/
+}
 
 remove_action( 'woocommerce_register_form', 'dokan_seller_reg_form_fields' );
 
