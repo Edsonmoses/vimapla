@@ -9,6 +9,7 @@ use EssentialBlocks\Core\PostMeta;
 use EssentialBlocks\Utils\Enqueue;
 use EssentialBlocks\Utils\Settings;
 use EssentialBlocks\Core\FontLoader;
+use EssentialBlocks\Core\ModifyWPCore;
 use EssentialBlocks\Core\Maintenance;
 use EssentialBlocks\Integrations\NFT;
 use EssentialBlocks\Core\PageTemplates;
@@ -24,7 +25,7 @@ use EssentialBlocks\Integrations\PluginInstaller;
 final class Plugin {
     use HasSingletone;
 
-    public $version = '4.1.1';
+    public $version = '4.1.2';
 
     public $admin;
     /**
@@ -113,6 +114,8 @@ final class Plugin {
         GlobalStyles::get_instance();
 
         add_action( 'plugins_loaded', [$this, 'plugins_loaded'] );
+
+        add_action( 'wp_loaded', [$this, 'wp_loaded'] );
         /**
          * Initialize.
          */
@@ -146,6 +149,15 @@ final class Plugin {
          * Migrator for Templately
          */
         // Migrator::get_instance();
+    }
+
+    /**
+     * Initializing Things on WP Loaded
+     * @return void
+     */
+    public function wp_loaded() {
+
+        ModifyWPCore::get_instance();
     }
 
     /**
