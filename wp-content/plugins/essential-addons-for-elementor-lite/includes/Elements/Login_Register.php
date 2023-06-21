@@ -215,6 +215,9 @@ class Login_Register extends Widget_Base {
 			'confirm_pass' => __( 'Confirm Password', 'essential-addons-for-elementor-lite' ),
 			'first_name'   => __( 'First Name', 'essential-addons-for-elementor-lite' ),
 			'last_name'    => __( 'Last Name', 'essential-addons-for-elementor-lite' ),
+			'country'   => __( 'Country', 'essential-addons-for-elementor-lite' ),
+			'district'    => __( 'District', 'essential-addons-for-elementor-lite' ),
+			'city'   => __( 'City', 'essential-addons-for-elementor-lite' ),
 			'website'      => __( 'Website', 'essential-addons-for-elementor-lite' ),
 		];
 
@@ -1987,7 +1990,7 @@ class Login_Register extends Widget_Base {
 
 		$this->add_control( 'reg_email_content_note', [
 			'type'            => Controls_Manager::RAW_HTML,
-			'raw'             => __( '<strong>Note:</strong> You can use dynamic content in the email body like [fieldname]. For example [username] will be replaced by user-typed username. Available tags are: [password], [username], [email], [firstname],[lastname], [website], [loginurl], [password_reset_link] and [sitetitle] ', 'essential-addons-for-elementor-lite' ),
+			'raw'             => __( '<strong>Note:</strong> You can use dynamic content in the email body like [fieldname]. For example [username] will be replaced by user-typed username. Available tags are: [password], [username], [email], [firstname],[lastname], [website], [country], [district],[city], [loginurl], [password_reset_link] and [sitetitle] ', 'essential-addons-for-elementor-lite' ),
 			'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 			'condition'       => [
 				'reg_email_template_type' => 'custom',
@@ -2093,7 +2096,7 @@ class Login_Register extends Widget_Base {
 
 		$this->add_control( 'reg_admin_email_content_note', [
 			'type'            => Controls_Manager::RAW_HTML,
-			'raw'             => __( '<strong>Note:</strong> You can use dynamic content in the email body like [fieldname]. For example [username] will be replaced by user-typed username. Available tags are: [username], [email], [firstname],[lastname], [website], [loginurl] and [sitetitle] ', 'essential-addons-for-elementor-lite' ),
+			'raw'             => __( '<strong>Note:</strong> You can use dynamic content in the email body like [fieldname]. For example [username] will be replaced by user-typed username. Available tags are: [username], [email], [firstname],[lastname], [website], [country], [district], [city], [loginurl] and [sitetitle] ', 'essential-addons-for-elementor-lite' ),
 			'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 			'condition'       => [
 				'reg_admin_email_template_type' => 'custom',
@@ -5370,6 +5373,9 @@ class Login_Register extends Widget_Base {
 			$confirm_pass_exists = 0;
 			$first_name_exists   = 0;
 			$last_name_exists    = 0;
+			$country_exists      = 0;
+			$district_exists     = 0;
+			$city_exists         = 0;
 			$website_exists      = 0;
 			$eael_phone_number_exists = 0;
 			
@@ -5380,6 +5386,9 @@ class Login_Register extends Widget_Base {
 				'user_name'        => __( 'Username', 'essential-addons-for-elementor-lite' ),
 				'first_name'       => __( 'First Name', 'essential-addons-for-elementor-lite' ),
 				'last_name'        => __( 'Last Name', 'essential-addons-for-elementor-lite' ),
+				'country'          => __( 'Country', 'essential-addons-for-elementor-lite' ),
+				'district'         => __( 'District', 'essential-addons-for-elementor-lite' ),
+				'city'             => __( 'City', 'essential-addons-for-elementor-lite' ),
 				'website'          => __( 'Website', 'essential-addons-for-elementor-lite' ),
 				'eael_phone_number'          => __( 'Phone', 'essential-addons-for-elementor-lite' ),
 			];
@@ -5491,6 +5500,9 @@ class Login_Register extends Widget_Base {
 									case 'user_name':
 									case 'first_name':
 									case 'last_name':
+									case 'country':
+									case 'district':
+									case 'city':
 										$field_input_type = 'text';
 										break;
 									case 'confirm_pass':

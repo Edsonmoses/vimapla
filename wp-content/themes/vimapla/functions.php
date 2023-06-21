@@ -299,3 +299,4 @@ if ( ! current_user_can( 'manage_woocommerce' ) ) {
     update_usermeta( $user_id, 'dokan_custom_district_name', $_POST['district_name'] );
     update_usermeta( $user_id, 'dokan_custom_city_name', $_POST['city_name'] );
 }
+
