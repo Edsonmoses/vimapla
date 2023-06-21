@@ -80,20 +80,20 @@
 
 <?php do_action( 'dokan_reg_form_field' ); ?>
 
-<?php /*<p class="form-row form-group user-role vendor-customer-registration">
+<p class="form-row form-group user-role vendor-customer-registration"  style="display:none !important;">
 
     <label class="radio">
-        <input type="radio" name="role" value="customer"<?php checked( $role, 'customer' ); ?>>
-        <?php esc_html_e( 'I am a customer', 'dokan-lite' ); ?>
+        <input type="hidden" name="role" value="seller"<?php checked( $role, 'seller' ); ?>>
+        <?php/* esc_html_e( 'I am a customer', 'dokan-lite' ); */?>
     </label>
     <br/>
     <label class="radio">
-        <input type="radio" name="role" value="seller"<?php checked( $role, 'seller' ); ?>>
-        <?php esc_html_e( 'I am a vendor', 'dokan-lite' ); ?>
+        <input type="hidden" name="role" value="seller"<?php checked( $role, 'seller' ); ?>>
+        <?php/* esc_html_e( 'I am a vendor', 'dokan-lite' ); */?>
     </label>
-    <?php do_action( 'dokan_registration_form_role', $role ); ?>
+    <?php/* do_action( 'dokan_registration_form_role', $role ); */?>
 
-</p>*/ ?>
+</p>
 <p class="form-row form-group form-row-wide">
     <label for="shop-country"><?php esc_html_e( 'Country', 'dokan-custom-country' ); ?><span class="required">*</span></label>
     <input type="text" class="input-text form-control" name="country_name" id="country_name" value="<?php if ( ! empty( $postdata['country_id'] ) ) echo esc_attr($postdata['country_name']); ?>" required="required" />
