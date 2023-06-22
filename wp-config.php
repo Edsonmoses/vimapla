@@ -1,6 +1,6 @@
 <?php
-define( 'WP_DEBUG', true );
-define( 'WP_DEBUG_DISPLAY', true );
+define( 'WP_DEBUG', false );
+define( 'WP_DEBUG_DISPLAY', false );
 /**
  * The base configuration for WordPress
  *
