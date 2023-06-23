@@ -183,12 +183,10 @@
 .eael-lr-form-wrapper .eael-forever-forget .forget-pass {
   text-align: right;
 }
-.eael-lr-form-wrapper .eael-lr-password-wrapper,
-.eael-lr-form-wrapper .eael-lr-password-wrapper-register {
+.eael-lr-form-wrapper .eael-lr-password-wrapper {
   position: relative;
 }
-.eael-lr-form-wrapper .eael-lr-password-wrapper button,
-.eael-lr-form-wrapper .eael-lr-password-wrapper-register button {
+.eael-lr-form-wrapper .eael-lr-password-wrapper button {
   position: absolute;
   top: 0;
   right: 0;

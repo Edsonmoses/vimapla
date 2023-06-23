@@ -434,15 +434,6 @@ class Sticky_Video extends Widget_Base
             ]
         );
 
-        $this->add_control( 'eaelsv_icon_new_notice', [
-			'type'            => Controls_Manager::RAW_HTML,
-			'raw'             => __( 'Play icon appears on top of overlay image.', 'essential-addons-for-elementor-lite' ),
-			'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
-            'condition' => [
-                'eaelsv_overlay_options' => 'yes',
-            ],
-		] );
-
         $this->end_controls_section();
 
         /**
@@ -749,23 +740,17 @@ class Sticky_Video extends Widget_Base
                     if (is_array($iconNew['value'])) {
                         $icon = '<img src="' . $iconNew['value']['url'] .  '" width="100">';
                     } else {
-                        $icon = '<i class="' . $iconNew['value'] . '"></i>';
+                        echo $icon = '<i class="' . $iconNew['value'] . '"></i>';
                     }
                 } else {
                     $icon = '<i class="eicon-play"></i>';
                 }
             }
 
-            $overlay_class = 'eaelsv-overlay';
-            if( 'yes' === $settings['eaelsv_overlay_options'] && empty( $settings['eaelsv_overlay_image']['url'] ) ){
-                $icon = '';
-                $overlay_class = 'eaelsv-overlay-ignore';
-            }
-
             $this->add_render_attribute(
                 'esvp_overlay_wrapper',
                 [
-                    'class' => esc_attr( $overlay_class ),
+                    'class' => 'eaelsv-overlay',
                     'style' => "background-image:url('" . $settings['eaelsv_overlay_image']['url'] . "');",
                 ]
             );

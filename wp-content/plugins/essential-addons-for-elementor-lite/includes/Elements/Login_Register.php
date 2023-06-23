@@ -1822,15 +1822,6 @@ class Login_Register extends Widget_Base {
 				'show_labels' => 'yes',
 			],
 		] );
-
-		$this->add_control( 'password_toggle_register', [
-			'label'     => __( 'Password Visibility Icon', 'essential-addons-for-elementor-lite' ),
-			'type'      => Controls_Manager::SWITCHER,
-			'label_off' => __( 'Hide', 'essential-addons-for-elementor-lite' ),
-			'label_on'  => __( 'Show', 'essential-addons-for-elementor-lite' ),
-			'default'   => '',
-		] );
-
 		do_action( 'eael/login-register/after-register-options-controls', $this );
 
 		/*--Register Fields Button--*/
@@ -2096,7 +2087,7 @@ class Login_Register extends Widget_Base {
 
 		$this->add_control( 'reg_admin_email_content_note', [
 			'type'            => Controls_Manager::RAW_HTML,
-			'raw'             => __( '<strong>Note:</strong> You can use dynamic content in the email body like [fieldname]. For example [username] will be replaced by user-typed username. Available tags are: [username], [email], [firstname],[lastname], [website], [country], [district], [city], [loginurl] and [sitetitle] ', 'essential-addons-for-elementor-lite' ),
+			'raw'             => __( '<strong>Note:</strong> You can use dynamic content in the email body like [fieldname]. For example [username] will be replaced by user-typed username. Available tags are: [username], [email], [firstname],[lastname], [website], [country], [district],[city], [loginurl] and [sitetitle] ', 'essential-addons-for-elementor-lite' ),
 			'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 			'condition'       => [
 				'reg_admin_email_template_type' => 'custom',
@@ -2159,7 +2150,7 @@ class Login_Register extends Widget_Base {
 
 		$this->add_control( 'lostpassword_email_content_note', [
 			'type'            => Controls_Manager::RAW_HTML,
-			'raw'             => __( '<strong>Note:</strong> You can use dynamic content in the email body like [fieldname]. For example [username] will be replaced by user-typed username. Available tags are: [username], [email], [firstname],[lastname], [website], [password_reset_link] and [sitetitle] ', 'essential-addons-for-elementor-lite' ),
+			'raw'             => __( '<strong>Note:</strong> You can use dynamic content in the email body like [fieldname]. For example [username] will be replaced by user-typed username. Available tags are: [username], [email], [firstname],[lastname], [website], [country], [district], [city], [password_reset_link] and [sitetitle] ', 'essential-addons-for-elementor-lite' ),
 			'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 			'render_type'     => 'none',
 		] );
@@ -3797,103 +3788,6 @@ class Login_Register extends Widget_Base {
 
 		$this->end_popover();
 
-		$this->add_control( 'lpv_po_toggle_register', [
-			'label'     => __( 'Register Password Visibility Style', 'essential-addons-for-elementor-lite' ),
-			'type'      => Controls_Manager::POPOVER_TOGGLE,
-			'condition' => [
-				'password_toggle_register' => 'yes',
-			],
-		] );
-		$this->start_popover();
-
-		$this->add_responsive_control( "lpv_size_register", [
-			'label'      => esc_html__( 'Icon Size', 'essential-addons-for-elementor-lite' ),
-			'type'       => Controls_Manager::SLIDER,
-			'size_units' => [
-				'px',
-				'rem',
-				'%',
-			],
-			'range'      => [
-				'px' => [
-					'min'  => 0,
-					'max'  => 50,
-					'step' => 1,
-				],
-			],
-			'selectors'  => [
-				"{{WRAPPER}} .eael-lr-form-wrapper.eael-register-form-wrapper .eael-lr-form-group .dashicons" => 'font-size: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}}',
-			],
-			'condition'  => [
-				'lpv_po_toggle_register' => 'yes',
-			],
-		] );
-		$this->add_control( "lvp_open_color_register", [
-			'label'     => __( 'Open Eye Color', 'essential-addons-for-elementor-lite' ),
-			'type'      => Controls_Manager::COLOR,
-			'selectors' => [
-				"{{WRAPPER}} .eael-lr-form-wrapper.eael-register-form-wrapper .eael-lr-form-group .dashicons-visibility" => 'color: {{VALUE}};',
-			],
-			'condition' => [
-				'lpv_po_toggle_register' => 'yes',
-			],
-		] );
-		$this->add_control( "lvp_close_color_register", [
-			'label'     => __( 'Close Eye Color', 'essential-addons-for-elementor-lite' ),
-			'type'      => Controls_Manager::COLOR,
-			'selectors' => [
-				"{{WRAPPER}} .eael-lr-form-wrapper.eael-register-form-wrapper .eael-lr-form-group .dashicons-hidden" => 'color: {{VALUE}};',
-			],
-			'condition' => [
-				'lpv_po_toggle_register' => 'yes',
-			],
-		] );
-
-		$this->add_responsive_control( "lpv_valign_register", [
-			'label'     => esc_html__( 'Vertical Alignment', 'essential-addons-for-elementor-lite' ),
-			'type'      => Controls_Manager::SLIDER,
-			'range'     => [
-				'px' => [
-					'min'  => - 50,
-					'max'  => 50,
-					'step' => 1,
-				],
-			],
-			'default'   => [
-				'unit' => 'px',
-				'size' => 0.73,
-			],
-			'selectors' => [
-				"{{WRAPPER}} .eael-lr-form-wrapper.eael-register-form-wrapper .eael-lr-form-group .wp-hide-pw" => 'top: {{SIZE}}px;',
-			],
-			'condition' => [
-				'lpv_po_toggle_register' => 'yes',
-			],
-		] );
-		$this->add_responsive_control( "lpv_halign_register", [
-			'label'     => esc_html__( 'Horizontal Alignment', 'essential-addons-for-elementor-lite' ),
-			'type'      => Controls_Manager::SLIDER,
-			'range'     => [
-				'px' => [
-					'min'  => - 50,
-					'max'  => 50,
-					'step' => 1,
-				],
-			],
-			'default'   => [
-				'unit' => 'px',
-				'size' => - 27,
-			],
-			'selectors' => [
-				"{{WRAPPER}} .eael-lr-form-wrapper.eael-register-form-wrapper .eael-lr-form-group .wp-hide-pw" => 'right: {{SIZE}}px;',
-			],
-			'condition' => [
-				'lpv_po_toggle_register' => 'yes',
-			],
-		] );
-
-		$this->end_popover();
-
 		$this->add_control( 'lpv_po_toggle_resetpassword', [
 			'label'     => __( 'Reset Password Visibility', 'essential-addons-for-elementor-lite' ),
 			'type'      => Controls_Manager::POPOVER_TOGGLE,
@@ -5386,11 +5280,10 @@ class Login_Register extends Widget_Base {
 				'user_name'        => __( 'Username', 'essential-addons-for-elementor-lite' ),
 				'first_name'       => __( 'First Name', 'essential-addons-for-elementor-lite' ),
 				'last_name'        => __( 'Last Name', 'essential-addons-for-elementor-lite' ),
-				'country'          => __( 'Country', 'essential-addons-for-elementor-lite' ),
-				'district'         => __( 'District', 'essential-addons-for-elementor-lite' ),
-				'city'             => __( 'City', 'essential-addons-for-elementor-lite' ),
-				'website'          => __( 'Website', 'essential-addons-for-elementor-lite' ),
-				'eael_phone_number'          => __( 'Phone', 'essential-addons-for-elementor-lite' ),
+				'country'   => __( 'Country', 'essential-addons-for-elementor-lite' ),
+				'district'    => __( 'District', 'essential-addons-for-elementor-lite' ),
+				'city'   => __( 'City', 'essential-addons-for-elementor-lite' ),
+				'website'      => __( 'Website', 'essential-addons-for-elementor-lite' ),
 			];
 			$repeated_f_labels   = [];
 
@@ -5408,7 +5301,6 @@ class Login_Register extends Widget_Base {
 			$lgn_url              = $lgn_atts = '';
 
 			$show_register_spinner  = !empty( $this->ds['register_btn_show_spinner'] ) ? $this->ds['register_btn_show_spinner'] : '';
-			$show_pv_icon     		= ( ! empty( $this->ds['password_toggle_register'] ) && 'yes' === $this->ds['password_toggle_register'] );
 
 			switch ( $lgn_link_action ) {
 				case 'custom':
@@ -5572,30 +5464,9 @@ class Login_Register extends Widget_Base {
 									if ( 'yes' === $this->ds['show_labels'] && ! empty( $field['field_label'] ) ) {
 										echo '<label ' . $this->get_render_attribute_string( $label_key ) . '>' . HelperCLass::eael_wp_kses( $field['field_label'] ) . '</label>';
 									}
-									if( 'password' === $field['field_type'] ){
-										echo '<div class="eael-lr-password-wrapper-register">';
-											echo '<input ' . $this->get_render_attribute_string( $input_key ) . '>';
-											
-											if ( $show_pv_icon ) { ?>
-												<button type="button"
-														id="wp-hide-pw-register"
-														class="wp-hide-pw hide-if-no-js"
-														aria-label="Show password">
-													<span class="dashicons dashicons-visibility"
-														aria-hidden="true"></span>
-												</button>
-											<?php }
-
-											if ( $show_icon && ! empty( $field['icon'] ) ) {
-												Icons_Manager::render_icon( $field['icon'], [ 'aria-hidden' => 'true' ] );
-											}
-										echo '</div>';
-									} else {
-										echo '<input ' . $this->get_render_attribute_string( $input_key ) . '>';
-
-										if ( $show_icon && ! empty( $field['icon'] ) ) {
-											Icons_Manager::render_icon( $field['icon'], [ 'aria-hidden' => 'true' ] );
-										}
+									echo '<input ' . $this->get_render_attribute_string( $input_key ) . '>';
+									if ( $show_icon && ! empty( $field['icon'] ) ) {
+										Icons_Manager::render_icon( $field['icon'], [ 'aria-hidden' => 'true' ] );
 									}
 									?>
                                 </div>
@@ -5808,7 +5679,7 @@ class Login_Register extends Widget_Base {
 		$rp_page_url = ! empty( $this->page_id_for_popup ) ? get_permalink( $this->page_id_for_popup ) : get_permalink( $this->page_id ); 
 
 		if ( $this->should_print_resetpassword_form_editor || ( ! empty( $_GET['eael-resetpassword'] ) ) ) {
-			$rp_data = $_COOKIE;
+			$rp_data = get_option('eael_resetpassword_rp_data_' . $this->get_id());
 			$show_resetpassword_on_form_submit = get_option('eael_show_reset_password_on_form_submit_' . $this->get_id());
 			
 			$validation_required = true;
@@ -5816,10 +5687,7 @@ class Login_Register extends Widget_Base {
 				$validation_required = false;
 			}
 
-			$rp_cookie = 'wp-resetpass-' . COOKIEHASH;
-			if ( ! empty( $rp_data[ $rp_cookie ] ) ) {
-				list( $rp_data['rp_login'], $rp_data['rp_key'] ) = explode( ':', sanitize_text_field( $rp_data[ $rp_cookie ] ) );
-			}
+			$rp_data = !empty( $rp_data ) ? maybe_unserialize($rp_data) : [];
 			
 			if( $validation_required ){
 				$rp_data['rp_key'] = ! empty( $rp_data['rp_key'] ) ? $rp_data['rp_key'] : '';
@@ -5842,7 +5710,13 @@ class Login_Register extends Widget_Base {
 					</script>
 					<?php
 					exit;
-				}				
+				}
+				
+				delete_option('eael_resetpassword_rp_data_' . esc_attr( $this->get_id() ) );
+			}
+
+			if( $show_resetpassword_on_form_submit ){
+				delete_option('eael_resetpassword_rp_data_' . esc_attr( $this->get_id() ) );
 			}
 			
 			delete_option('eael_show_reset_password_on_form_submit_' . $this->get_id());

@@ -49,7 +49,6 @@ $widget_id = isset($settings['eael_widget_id']) ? $settings['eael_widget_id'] : 
 
 $sale_badge_text = !empty($settings['eael_product_sale_text']) ? $settings['eael_product_sale_text'] :  __( 'Sale!', 'essential-addons-for-elementor-lite' );
 $stock_out_badge_text = !empty($settings['eael_product_stockout_text']) ?$settings['eael_product_stockout_text'] : __( 'Stock <br/> Out', 'essential-addons-for-elementor-lite' );
-$is_show_badge = $settings['eael_show_product_sale_badge'];
 
 $quick_view_setting = [
 	'widget_id' => $widget_id,
@@ -79,14 +78,11 @@ if ( $grid_style_preset == 'eael-product-simple' || $grid_style_preset == 'eael-
             if ( $should_print_rating ) {
                 echo wp_kses_post( wc_get_rating_html( $product->get_average_rating(), $product->get_rating_count() ) );
             }
-            if ( $is_show_badge ){
-                if ( ! $product->is_in_stock() ) {
-                    printf( '<span class="outofstock-badge">%s</span>', $stock_out_badge_text );
-                } elseif ( $product->is_on_sale() ) {
-                    printf( '<span class="onsale">%s</span>', $sale_badge_text );
-                }
+            if ( ! $product->is_in_stock() ) {
+                printf( '<span class="outofstock-badge">%s</span>', $stock_out_badge_text );
+            } elseif ( $product->is_on_sale() ) {
+                printf( '<span class="onsale">%s</span>', $sale_badge_text );
             }
-
 
             if ( $should_print_price ) {
               echo '<div class="eael-product-price">'.$product->get_price_html().'</div>';
@@ -150,12 +146,10 @@ if ( $grid_style_preset == 'eael-product-simple' || $grid_style_preset == 'eael-
             echo wc_get_rating_html( $product->get_average_rating(), $product->get_rating_count() );
         }
 
-        if ( $is_show_badge ) {
-            if ( ! $product->is_in_stock() ) {
-                printf( '<span class="outofstock-badge">%s</span>', $stock_out_badge_text );
-            } elseif ( $product->is_on_sale() ) {
-                printf( '<span class="onsale">%s</span>', $sale_badge_text );
-            }
+        if ( ! $product->is_in_stock() ) {
+	        printf( '<span class="outofstock-badge">%s</span>', $stock_out_badge_text );
+        } elseif ( $product->is_on_sale() ) {
+	        printf( '<span class="onsale">%s</span>', $sale_badge_text );
         }
 
         if ( $should_print_price ) {
@@ -172,14 +166,10 @@ if ( $grid_style_preset == 'eael-product-simple' || $grid_style_preset == 'eael-
                 <div class="product-image-wrap">
                     <div class="image-wrap">
                         <?php
-                        if ( $is_show_badge ) {
-                            echo( ! $product->is_in_stock() ? '<span class="eael-onsale outofstock ' . $sale_badge_preset . ' ' . $sale_badge_align . '">' . $stock_out_badge_text . '</span>' : ( $product->is_on_sale() ? '<span class="eael-onsale ' . $sale_badge_preset . ' ' . $sale_badge_align . '">' . $sale_badge_text . '</span>' : '' ) );
-                        }
-
+                        echo (! $product->is_in_stock() ? '<span class="eael-onsale outofstock '.$sale_badge_preset.' '.$sale_badge_align.'">'.$stock_out_badge_text.'</span>' : ($product->is_on_sale() ? '<span class="eael-onsale '.$sale_badge_preset.' '.$sale_badge_align.'">' . $sale_badge_text . '</span>' : '') );
                         if( $should_print_image_clickable ) {
 	                        echo '<a href="' . $product->get_permalink() . '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">';
                         }
-
                         echo $product->get_image($settings['eael_product_grid_image_size_size'], ['loading' => 'eager']);
 
                         if( $should_print_image_clickable ) {
@@ -316,11 +306,7 @@ if ( $grid_style_preset == 'eael-product-simple' || $grid_style_preset == 'eael-
                         if( $should_print_image_clickable ) {
 	                        echo '<a href="' . $product->get_permalink() . '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">';
                         }
-
-                        if ( $is_show_badge ) {
-                            echo( ! $product->is_in_stock() ? '<span class="eael-onsale outofstock ' . $sale_badge_preset . ' ' . $sale_badge_align . '">' . $stock_out_badge_text . '</span>' : ( $product->is_on_sale() ? '<span class="eael-onsale ' . $sale_badge_preset . ' ' . $sale_badge_align . '">' . $sale_badge_text . '</span>' : '' ) );
-                        }
-
+                        echo ( ! $product->is_in_stock() ? '<span class="eael-onsale outofstock '.$sale_badge_preset.' '.$sale_badge_align.'">'.$stock_out_badge_text.'</span>' : ($product->is_on_sale() ? '<span class="eael-onsale '.$sale_badge_preset.' '.$sale_badge_align.'">' . $sale_badge_text. '</span>' : '') );
                         echo $product->get_image($settings['eael_product_grid_image_size_size'], ['loading' => 'eager']);
 
                         if( $should_print_image_clickable ) {
@@ -390,9 +376,7 @@ if ( $grid_style_preset == 'eael-product-simple' || $grid_style_preset == 'eael-
                         if( $should_print_image_clickable ) {
 	                        echo '<a href="' . $product->get_permalink() . '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">';
                         }
-                        if ( $is_show_badge ) {
-                            echo( ! $product->is_in_stock() ? '<span class="eael-onsale outofstock ' . $sale_badge_preset . ' ' . $sale_badge_align . '">' . $stock_out_badge_text . '</span>' : ( $product->is_on_sale() ? '<span class="eael-onsale ' . $sale_badge_preset . ' ' . $sale_badge_align . '">' . $sale_badge_text . '</span>' : '' ) );
-                        }
+                        echo ( ! $product->is_in_stock() ? '<span class="eael-onsale outofstock '.$sale_badge_preset.' '.$sale_badge_align.'">'.$stock_out_badge_text.'</span>' : ($product->is_on_sale() ? '<span class="eael-onsale '.$sale_badge_preset.' '.$sale_badge_align.'">' . $sale_badge_text. '</span>' : '') );
                         echo $product->get_image($settings['eael_product_grid_image_size_size'], ['loading' => 'eager']);
 
                         if( $should_print_image_clickable ) {

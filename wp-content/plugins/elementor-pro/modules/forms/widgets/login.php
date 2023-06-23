@@ -897,13 +897,28 @@ class Login extends Base_Widget {
 					?>
 					<input size="1" <?php $this->print_render_attribute_string( 'password_input' ); ?>>
 				</div>
+				<?php
+				$show_lost_password = 'yes' === $settings['show_lost_password'];
+				$show_remember_me = 'yes' === $settings['show_remember_me'] ;
 
-				<?php if ( 'yes' === $settings['show_remember_me'] ) : ?>
-					<div class="elementor-field-type-checkbox elementor-field-group elementor-column elementor-col-100 elementor-remember-me">
-						<label for="elementor-login-remember-me">
-							<input type="checkbox" id="elementor-login-remember-me" name="rememberme" value="forever">
-							<?php echo esc_html__( 'Remember Me', 'elementor-pro' ); ?>
-						</label>
+				if ( $show_lost_password || $show_remember_me ) : ?>
+					<div class="elementor-field-group elementor-column elementor-col-100">
+						<?php if ( $show_remember_me ) : ?>
+							<div class="elementor-field-type-checkbox elementor-remember-me">
+								<label for="elementor-login-remember-me">
+									<input type="checkbox" id="elementor-login-remember-me" name="rememberme" value="forever">
+									<?php echo esc_html__( 'Remember Me', 'elementor-pro' ); ?>
+								</label>
+							</div>
+						<?php endif; ?>
+
+						<?php if ( $show_lost_password ) : ?>
+								<span class="elementor-login-separator"> </span>
+							<?php // PHPCS - `wp_lostpassword_url` is safe. ?>
+							<a class="elementor-lost-password" href="<?php echo wp_lostpassword_url( $redirect_url ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
+								<?php echo esc_html__( 'Forgot Password?', 'elementor-pro' ); ?>
+							</a>
+						<?php endif; ?>
 					</div>
 				<?php endif; ?>
 
@@ -916,25 +931,21 @@ class Login extends Base_Widget {
 				</div>
 
 				<?php
-				$show_lost_password = 'yes' === $settings['show_lost_password'];
 				$show_register = get_option( 'users_can_register' ) && 'yes' === $settings['show_register'];
 
 				if ( $show_lost_password || $show_register ) : ?>
-					<div class="elementor-field-group elementor-column elementor-col-100">
-						<?php if ( $show_lost_password ) : ?>
-							<?php // PHPCS - `wp_lostpassword_url` is safe. ?>
-							<a class="elementor-lost-password" href="<?php echo wp_lostpassword_url( $redirect_url ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
-								<?php echo esc_html__( 'Lost your password?', 'elementor-pro' ); ?>
+					<div class="elementor-field-group elementor-column elementor-col-100 elementor-registers mt-10">
+						<?php if ( $show_register ) : ?>
+							<?php // PHPCS - `wp_registration_url` is safe. ?>
+							<a class="elementor-register" href="<?php echo site_url('vendor-registration'); // echo wp_registration_url(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
+								<?php echo esc_html__( 'Or create an ', 'elementor-pro' ); ?><b>account</b>
 							</a>
 						<?php endif; ?>
-
+					</div>
+					<div class="elementor-field-group elementor-column elementor-col-100 elementor-registers">
 						<?php if ( $show_register ) : ?>
-							<?php if ( $show_lost_password ) : ?>
-								<span class="elementor-login-separator"> | </span>
-							<?php endif; ?>
-							<?php // PHPCS - `wp_registration_url` is safe. ?>
-							<a class="elementor-register" href="<?php echo wp_registration_url(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
-								<?php echo esc_html__( 'Register', 'elementor-pro' ); ?>
+							<a class="elementor-register" style="margin-top:-15px" href="/">
+								<?php echo esc_html__( '<<< Back', 'elementor-pro' ); ?>
 							</a>
 						<?php endif; ?>
 					</div>

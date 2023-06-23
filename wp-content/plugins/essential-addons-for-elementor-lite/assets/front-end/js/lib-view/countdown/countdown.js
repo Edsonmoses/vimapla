@@ -244,7 +244,7 @@
     };
 
     // Register as jQuery plugin
-    $.fn.eacountdown = function (options) {
+    $.fn.countdown = function (options) {
         return this.each(function () {
             var $this = $(this),
                 data = $this.data("countdown");
@@ -259,8 +259,8 @@
         });
     };
 
-    $.fn.eacountdown.constructor = Countdown;
-    $.fn.eacountdown.setDefaults = Countdown.setDefaults;
+    $.fn.countdown.constructor = Countdown;
+    $.fn.countdown.setDefaults = Countdown.setDefaults;
 
     $(function () {
         $("[countdown]").countdown();
