@@ -1,4 +1,6 @@
 <?php
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_DISPLAY', true );
 /**
  * The base configuration for WordPress
  *
@@ -20,13 +22,17 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'vimapla2' );
+
+define( 'WP_HOME', 'https://vimapla.com' );
+define( 'WP_SITEURL', 'https://vimapla.com' );
+
+define( 'DB_NAME', 'vimapla' );
 
 /** Database username */
 define( 'DB_USER', 'root' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'root' );
+define( 'DB_PASSWORD', '5SN9Lmng' );
 
 /** Database hostname */
 define( 'DB_HOST', 'localhost' );
