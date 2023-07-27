@@ -189,3 +189,12 @@ span.coupon-code {
 .notice-has-thumbnail.wpdeveloper-freedom30-notice .wpdeveloper-notice-thumbnail img {
     width: 50px;
 }
+
+#wpnotice-templately-upsale {
+	grid-template-columns: 1fr 50px !important;
+}
+
+#wpnotice-templately-upsale p {
+	margin: 0;
+	padding: 10px 0px;
+}

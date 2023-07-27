@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
         'name' => 'templately/templately',
-        'pretty_version' => '2.x-dev',
-        'version' => '2.9999999.9999999.9999999-dev',
-        'reference' => '58eb598340f00c8405dc0427f5a354412ab2d01b',
+        'pretty_version' => 'dev-latest',
+        'version' => 'dev-latest',
+        'reference' => 'de0746def02c4cf24983b5073b2cf003d708489c',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'dev' => true,
+        'dev' => false,
     ),
     'versions' => array(
         'priyomukul/wp-notice' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '832119aa1f4ddc32375ea88168fc84c2e58e9c29',
+            'reference' => '393ec2b4c12e4974377d67e524ff1760e9e1b33d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../priyomukul/wp-notice',
             'aliases' => array(
@@ -22,9 +22,9 @@
             'dev_requirement' => false,
         ),
         'templately/templately' => array(
-            'pretty_version' => '2.x-dev',
-            'version' => '2.9999999.9999999.9999999-dev',
-            'reference' => '58eb598340f00c8405dc0427f5a354412ab2d01b',
+            'pretty_version' => 'dev-latest',
+            'version' => 'dev-latest',
+            'reference' => 'de0746def02c4cf24983b5073b2cf003d708489c',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

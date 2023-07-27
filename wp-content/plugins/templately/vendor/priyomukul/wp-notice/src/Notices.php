@@ -12,6 +12,7 @@ final class Notices extends Base {
 	public $system_id = 'wpnotice_system';
 	public $app = 'wpnotice';
 	public $version = '1.0.0';
+	public $dev_mode = false; // Add default value for $dev_mode
 
 	private $args = [];
 
@@ -54,7 +55,7 @@ final class Notices extends Base {
 	}
 
 	public function notices(){
-		wp_enqueue_style( $this->system_id, $this->scripts );
+		wp_enqueue_style( $this->system_id, $this->scripts, [], '2.2.2' );
 
 		if( ! $this->dev_mode ) {
 			$current_notice = current( $this->eligible_notices() );

@@ -634,7 +634,18 @@
     });
 
 	/**
-	 * 4. infiniteScroll Support
+	 * 4. Woolentor quick cart
+	 */
+	$( document ).on( 'woolentor_quick_cart_rendered', function() {
+		if ( typeof swatchly_add_to_cart_variation_params !== 'undefined' ) {
+			$( '.variations_form' ).each( function() {
+				$( this ).wc_variation_form();
+			});
+		}
+	});
+
+	/**
+	 * 5. infiniteScroll Support
 	 * It's oly work under document.ready and on 'append.infiniteScroll'
 	 */
 	 $(document).ready(function(){

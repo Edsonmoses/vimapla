@@ -10,9 +10,20 @@ class Dismiss extends Base {
 	use Helper;
 
 	private $id;
-	private $scope = 'user';
-	private $app   = null;
-	private $hook  = null;
+	private $scope       = 'user';
+	private $app         = null;
+	private $hook        = null;
+	private $start       = null;
+	private $recurrence  = null;
+	private $dismissible = null;
+	private $refresh     = null;
+	private $expire      = null;
+	private $do_action   = null;
+	private $display_if  = null;
+	private $classes     = null;
+	private $screens     = null;
+	private $type        = null;
+	private $capability  = null;
 
 	public function __construct( $id, $options, $app ){
 		$this->id = $id;
@@ -109,8 +120,9 @@ class Dismiss extends Base {
 
 		if( isset( $_POST['later'] ) ) {
 			$_recurrence = intval( $this->recurrence ) || 15;
-			$_queue = $this->app->storage()->get();
-			$_queue[ $this->id ]['start'] = $this->strtotime( "+$_recurrence days" );
+			$_queue      = $this->app->storage()->get();
+
+			$_queue[ $this->id ]['start']  = $this->strtotime( "+$_recurrence days" );
 			$_queue[ $this->id ]['expire'] = $this->strtotime( "+". ($_recurrence + 3) ." days" );
 			$this->app->storage()->save( $_queue );
 			return;

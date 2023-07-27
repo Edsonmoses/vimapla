@@ -4,7 +4,7 @@ Tags: code, css, php, footer, functions, content, facebook pixel, footer code, f
 Requires at least: 4.6
 Tested up to: 6.2
 Requires PHP: 5.5
-Stable tag: 2.0.12
+Stable tag: 2.0.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -307,6 +307,10 @@ Thank you
 Syed Balkhi
 
 == Changelog ==
+
+= 2.0.13 =
+* New: We have added user customization options for the list of snippets in the admin. Now, you can choose snippet list columns, determine the number of snippets to display, and set the default order of the snippets.
+* New: When you save a snippet, the WPCode editor will retain the cursor position, making it easier for you to continue editing larger snippets.
 
 = 2.0.12 =
 * New: You can now add shortcode attributes and use them in snippets. Any attribute you define becomes available as a variable in PHP & Universal code snippets.

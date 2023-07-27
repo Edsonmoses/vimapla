@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, tarekht, aslamhasi
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
 Tested up to: 6.2
-Stable tag: 2.6.3
+Stable tag: 2.6.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1076,6 +1076,16 @@ Feel free to [Contact us](https://hasthemes.com/contact-us/)
 Elementor Pro is not required. But you can use ShopLentor with Elementor free & Pro.
 
 == Changelog ==
+
+= Version: 2.6.5 - Date: 08-07-2023 =
+* Compatibility : Wishlist button Compatibility with WC FSE blocks.
+* Compatibility : With latest WooComemrce and Latest Elelementor version.
+
+= Version: 2.6.4 - Date: 25-06-2023 =
+* Solved : Product show issue with product filter addon.
+* Solved: Footer menu doesn’t showing issue with shopify like checkout page.
+* Solved : Variation Swatch render issue with QuickCart.
+* Compatibility : With latest WooComemrce and Latest Elelementor version.
 
 = Version: 2.6.3 - Date: 28-05-2023 =
 * Added : Option to show back order product available date and send it to client email address after order completion.

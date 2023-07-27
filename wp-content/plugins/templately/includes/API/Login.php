@@ -47,7 +47,7 @@ class Login extends API {
             }
         } else {
             $funcArgs['email']    = $email;
-            $funcArgs['password'] = $password;
+            $funcArgs['password'] = addcslashes( $password, '"' );
 
             if ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
                 $errors['email'] = __( 'Make sure you have given a valid email address.', 'templately' );

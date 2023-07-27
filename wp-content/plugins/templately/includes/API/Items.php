@@ -23,7 +23,10 @@ class Items extends API {
 		$this->get( 'items', [ $this, 'get_items' ], [
 			'type'     => [
 				'default'  => 'items',
-				'required' => false
+				'required' => false,
+				// 'validate_callback' => function( $param, $request, $key ){
+				// 	return in_array( $param, [ 'items', 'sections', 'blocks', 'packs', 'pages' ], true );
+				// }
 			],
 			'platform' => [
 				'default'  => 'elementor',
@@ -67,7 +70,8 @@ class Items extends API {
 	 * @return string
 	 */
 	public function get_query_types( $type = 'blocks' ) {
-		return ( $type === 'blocks' || $type === 'sections' ) ? 'items' : trim( $type );
+		$item_types = ( $type === 'blocks' || $type === 'sections' ) ? 'items' : trim( $type );
+		return in_array( $item_types, [ 'items', 'pages', 'packs' ], true ) ? $item_types : false;
 	}
 
 	public function get_items( WP_REST_Request $request ) {
@@ -117,6 +121,10 @@ class Items extends API {
 			$query = 'total_page, current_page, data { id, name, price, rating, downloads, type, template_type{ slug }, slug, favourite_count, dependencies{ id, name, icon, plugin_file, plugin_original_slug, is_pro, link }, thumbnail }';
 		}
 
+		if( $type === false ) {
+			return $this->error( 'invalid_type_call', __( 'Invalid Type Call', 'templately' ) );
+		}
+
 		return $this->http()->query(
 			$type,
 			$query,
@@ -136,6 +144,10 @@ class Items extends API {
 				'items/:slug',
 				'400'
 			);
+		}
+
+		if( $type === false ) {
+			return $this->error( 'invalid_type_call', __( 'Invalid Type Call', 'templately' ) );
 		}
 
 		$items_params = 'id, name, rating, type, description, slug, price, features, favourite_count, thumbnail, downloads, categories{ id, name, slug }, dependencies{ id, name, icon, plugin_file, plugin_original_slug, is_pro, link }, tags{ name, id }, categories{ name, id }, screenshots{ url }, banner, pack{ id, name, slug, items{ id, price, name, type, slug, thumbnail } }, live_url, template_type{ id, name, slug }';

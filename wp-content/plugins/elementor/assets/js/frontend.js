@@ -1,4 +1,4 @@
-/*! elementor - v3.14.0 - 14-06-2023 */
+/*! elementor - v3.15.0 - 26-07-2023 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend"],{
 
 /***/ "../assets/dev/js/frontend/documents-manager.js":
@@ -101,8 +101,6 @@ module.exports = function ($) {
   };
   if (elementorFrontendConfig.experimentalFeatures['nested-elements']) {
     this.elementsHandlers['nested-tabs.default'] = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! elementor/modules/nested-tabs/assets/js/frontend/handlers/nested-tabs */ "../modules/nested-tabs/assets/js/frontend/handlers/nested-tabs.js"));
-  }
-  if (elementorFrontendConfig.experimentalFeatures['nested-accordion']) {
     this.elementsHandlers['nested-accordion.default'] = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! elementor/modules/nested-accordion/assets/js/frontend/handlers/nested-accordion */ "../modules/nested-accordion/assets/js/frontend/handlers/nested-accordion.js"));
   }
   const addGlobalHandlers = () => elementorFrontend.hooks.addAction('frontend/element_ready/global', _global.default);
@@ -991,7 +989,7 @@ class BackgroundVideo extends elementorModules.frontend.handlers.Base {
         });
       }
     }
-    elementorFrontend.elements.$window.on('resize', this.changeVideoSize);
+    elementorFrontend.elements.$window.on('resize elementor/bg-video/recalc', this.changeVideoSize);
   }
   deactivate() {
     if ('youtube' === this.videoType && this.player.getIframe() || 'vimeo' === this.videoType) {

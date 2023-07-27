@@ -45,6 +45,10 @@ class Shortcode {
         $product_id = '';
         if ( $product && is_a( $product, 'WC_Product' ) ) {
             $product_id = $product->get_id();
+        } else if ( get_post_type( get_the_ID() ) === 'product' ) {
+            $product_id = get_the_ID();
+        }else{
+            $product_id = '';
         }
 
         $has_product = false;

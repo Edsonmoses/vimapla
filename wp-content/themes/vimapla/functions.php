@@ -300,3 +300,14 @@ if ( ! current_user_can( 'manage_woocommerce' ) ) {
     update_usermeta( $user_id, 'dokan_custom_city_name', $_POST['city_name'] );
 }
 
+/**
+WooCommerce Lost Password Shortcode
+**/
+
+function njengah_lost_password_form( $atts ) {
+
+    return wc_get_template( 'myaccount/form-lost-password.php',
+    array( 'form' => 'lost_password' ) );
+    
+    }
+    add_shortcode( 'vimapla_lost_password_form', 'vimapla_lost_password_form' );

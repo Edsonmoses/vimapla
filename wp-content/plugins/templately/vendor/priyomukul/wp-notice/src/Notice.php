@@ -32,7 +32,6 @@ class Notice extends Base {
 	private $options = [
 		// 'start'       =>  192933, // timestamp
 		// 'expire'       => 1029339, // timestamp
-		'refresh'     => '',
 		'classes'     => '',
 		'recurrence'  => false,
 		'scope'       => 'user',
@@ -126,20 +125,20 @@ class Notice extends Base {
 			$class  = ! empty( $link['class'] ) ? $link['class'] : '';
 
 			if( ! empty( $link['attributes'] ) ) {
-				$link['attributes']['target'] = empty( $link['attributes']['target'] ) ? '_top' : $link['attributes']['target'];
-				$_attributes  = $this->attributes( $link['attributes'] );
-				$link['link'] = empty( $link['link'] ) ? '#' : $link['link'];
-			}
+					$link['attributes']['target'] = '_top';
+					$_attributes  = $this->attributes( $link['attributes'] );
+					$link['link'] = '#';
+				}
 
-			$output .= '<li style="margin: 0 15px 0 0;" class="notice-link-item '. $class .'">';
-				$output .= ! empty( $link['link'] ) ? '<a href="' . esc_url( $link['link'] ) . '" '. $_attributes .'>' : '';
-					if ( isset( $link['icon_class'] ) ) {
-						$output .= '<span style="margin-right: 5px" class="' . esc_attr( $link['icon_class'] ) . '"></span>';
-					}
-					$output .= $link['label'];
-				$output .= ! empty( $link['link'] ) ? '</a>' : '';
-			$output .= '</li>';
-		}
+				$output .= '<li style="margin: 0 15px 0 0;" class="notice-link-item '. $class .'">';
+					$output .= ! empty( $link['link'] ) ? '<a href="' . esc_url( $link['link'] ) . '" '. $_attributes .'>' : '';
+						if ( isset( $link['icon_class'] ) ) {
+							$output .= '<span style="margin-right: 5px" class="' . esc_attr( $link['icon_class'] ) . '"></span>';
+						}
+						$output .= $link['label'];
+					$output .= ! empty( $link['link'] ) ? '</a>' : '';
+				$output .= '</li>';
+			}
 
 		$output .= '</ul>';
 
@@ -148,22 +147,21 @@ class Notice extends Base {
 
 	public function attributes( $params = [] ){
 		$_attr = [];
-		$classname = '';
+		$classname = 'dismiss-btn ';
 
 		if( ! empty( $params['class'] ) ) {
 			$classname .= $params['class'];
 			unset( $params['class'] );
 		}
 
+		$_attr[] = 'class="' . esc_attr( $classname ) . '"';
+
+		$_attr[] = 'target="_blank"';
 		if( ! empty( $params ) ) {
 			foreach( $params as $key => $value ) {
 				$_attr[] = "$key='$value'";
-				if($key === 'data-dismiss') {
-					$classname = ' dismiss-btn ';
-				}
 			}
 		}
-		$_attr[] = 'class="' . esc_attr( $classname ) . '"';
 
 		return \implode(' ', $_attr);
 	}

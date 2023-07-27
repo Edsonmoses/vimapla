@@ -13,6 +13,7 @@ $get_logo_url_type = woolentor_get_option( 'logo_page', 'woolentor_shopify_check
 $get_logo_custom_url = woolentor_get_option( 'logo_custom_url', 'woolentor_shopify_checkout_settings', '' );
 $get_custom_logo_url = $get_logo_url_type == 'custom' ? $get_logo_custom_url : ( !empty( $get_logo_url_type ) ? get_permalink( $get_logo_url_type ) : "" );
 $get_custom_menu_id = woolentor_get_option( 'custommenu', 'woolentor_shopify_checkout_settings', '0' );
+$has_footer_menu = '';
 $menu_html = '';
 
 if( !empty( $get_custom_menu_id ) ){
@@ -27,6 +28,7 @@ if( !empty( $get_custom_menu_id ) ){
     ];
     // General Menu.
     $menu_html = wp_nav_menu( $custom_menuargs );
+    $has_footer_menu = true;
 }
 
 // Skip shipping tab
@@ -251,7 +253,6 @@ $labels = apply_filters( 'woolentor_slc_labels', $labels );
                         $terms_page_link = get_permalink($terms_page_id);
 
                         $policy_page_id     = (int) get_option( 'wp_page_for_privacy_policy' );
-                        $has_footer_menu = '';
                         if( $terms_page_id || $policy_page_id ){
                             $has_footer_menu = true;
                         }

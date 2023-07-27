@@ -5,11 +5,11 @@ Tags: Elementor, template, templates, Gutenberg, template kits, elementor templa
 Requires at least: 5.0
 Tested up to: 6.2
 Requires PHP: 5.6
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Ultimate Free Templates Cloud for WordPress - Elementor & Gutenberg! 3000+ Free & Premium Designs!
+Ultimate Free Templates Cloud for WordPress - Elementor & Gutenberg! 4000+ Free & Premium Designs!
 
 == Description ==
 
@@ -133,6 +133,10 @@ Yes, We have many free templates for Elementor & Gutenberg that you can use to b
 
 
 == Changelog ==
+
+= 2.2.2 - 26-07-2023 =
+Fixed: Login Issue for certain users
+Few minor bug fixes and improvements.
 
 = 2.2.1 - 12-06-2023 =
 Few minor bug fixes and improvements.

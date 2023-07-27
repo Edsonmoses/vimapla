@@ -149,28 +149,53 @@ class WooLentorProductQuery{
 
         if ( isset( $_GET['wlfilter'] ) ) {
 
+            $woo_taxonomies = get_object_taxonomies( 'product' );
+
             $queries =[];
             $new_queries = [];
             parse_str( $_SERVER['QUERY_STRING' ], $queries );
             foreach ( $queries as $key => $querie ) {
-                $new_queries[] = $key;
-            }
+                // $new_queries[] = $key;
 
-            $woo_taxonomies = get_object_taxonomies( 'product' );
-            if( isset( $new_queries[1] ) && !in_array( $new_queries[1], [ 'wlsort', 'wlorder_by' ] ) ){
-                $attr_pre_str = substr( $new_queries[1], 0, 6 );
+                if( !in_array( $key, [ 'wlsort', 'wlorder_by' ] ) ){
+                    $attr_pre_str = substr( $key, 0, 6 );
 
-                $taxonomy = ( 'filter' === $attr_pre_str ) ? str_replace('filter', 'pa', $new_queries[1] ) : $new_queries[1];
-                $taxonomy = ('woolentor' === substr( $taxonomy, 0, 9 ) ) ? str_replace('woolentor_','',$taxonomy) : $taxonomy;
-                if( isset( $_GET[$new_queries[1] ] ) && in_array( $taxonomy, $woo_taxonomies ) ){
-                    $tax_query[] = array(
-                        'taxonomy' => $taxonomy,
-                        'field' => 'slug',
-                        'terms' => explode( ',', $_GET[$new_queries[1]] ),
-                    );
+                    if( 'filter' === $attr_pre_str ){
+                        $taxonomy = str_replace('filter', 'pa', $key );
+                    } else if( 'woolentor' === substr( $key, 0, 9 ) ){
+                        $taxonomy = str_replace('woolentor_','',$key);
+                    }else{
+                        $taxonomy = "";
+                    }
+
+                    if( ( $taxonomy !== "" ) && in_array( $taxonomy, $woo_taxonomies ) ){
+                        $tax_query[] = array(
+                            'taxonomy' => $taxonomy,
+                            'field' => 'slug',
+                            'terms' => explode( ',', $querie ),
+                        );
+                    }
+
                 }
 
             }
+
+
+            // $woo_taxonomies = get_object_taxonomies( 'product' );
+            // if( isset( $new_queries[1] ) && !in_array( $new_queries[1], [ 'wlsort', 'wlorder_by' ] ) ){
+            //     $attr_pre_str = substr( $new_queries[1], 0, 6 );
+
+            //     $taxonomy = ( 'filter' === $attr_pre_str ) ? str_replace('filter', 'pa', $new_queries[1] ) : $new_queries[1];
+            //     $taxonomy = ('woolentor' === substr( $taxonomy, 0, 9 ) ) ? str_replace('woolentor_','',$taxonomy) : $taxonomy;
+            //     if( isset( $_GET[$new_queries[1] ] ) && in_array( $taxonomy, $woo_taxonomies ) ){
+            //         $tax_query[] = array(
+            //             'taxonomy' => $taxonomy,
+            //             'field' => 'slug',
+            //             'terms' => explode( ',', $_GET[$new_queries[1]] ),
+            //         );
+            //     }
+
+            // }
 
             if( isset( $_GET['wlorder_by'] ) && $_GET['wlorder_by'] === 'featured' ){
                 $tax_query[] = [

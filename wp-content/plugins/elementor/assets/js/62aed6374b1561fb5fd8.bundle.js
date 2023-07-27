@@ -1,4 +1,4 @@
-/*! elementor - v3.14.0 - 14-06-2023 */
+/*! elementor - v3.15.0 - 26-07-2023 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["vendors-node_modules_react-query_devtools_index_js"],{
 
 /***/ "../node_modules/match-sorter/dist/match-sorter.esm.js":
