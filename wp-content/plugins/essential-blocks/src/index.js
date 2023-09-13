@@ -43,3 +43,5 @@ import "../blocks/google-map/src/index.js";
 import "../blocks/openverse/src/index.js";
 import "../blocks/advanced-navigation/src/index.js";
 import "../blocks/shape-divider/src/index.js";
+import "../blocks/icon/src/index.js";
+import "../blocks/price/src/index.js";

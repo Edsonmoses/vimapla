@@ -13,14 +13,16 @@ class Admin_Apps_Page {
 
 			<div class="e-a-page-title">
 				<h2><?php echo esc_html__( 'Popular Apps, New Possibilities.', 'elementor' ); ?></h2>
-				<p><?php echo esc_html__( 'Boost your web-creation process with add-ons, plugins, and more tools specially selected to unleash your creativity, increase productivity, and enhance your Elementor-powered website.', 'elementor' ); ?></p>
+				<p><?php echo esc_html__( 'Boost your web-creation process with add-ons, plugins, and more tools specially selected to unleash your creativity, increase productivity, and enhance your Elementor-powered website.', 'elementor' ); ?><br>
+					<a href="https://go.elementor.com/wp-dash-apps-about-apps-page/" target="_blank"><?php echo esc_html__( 'Learn more about this page.', 'elementor' ); ?></a>
+				</p>
 			</div>
 
 			<div class="e-a-list">
 				<?php self::render_plugins_list(); ?>
 			</div>
 			<div class="e-a-page-footer">
-				<p><?php echo esc_html__( 'Please note that certain services on this page are developed by third-party companies. When you click on the their action button, you may be redirected to an external website.', 'elementor' ); ?></p>
+				<p><?php echo esc_html__( 'Please note that certain services on this page are developed by third-party companies. When you click on their action button, you may be redirected to an external website.', 'elementor' ); ?></p>
 			</div>
 		</div>
 		<?php
@@ -57,7 +59,7 @@ class Admin_Apps_Page {
 				'offering' => 'Use coupon code: onlyforelementor',
 				'action_label' => 'Let\'s Go',
 				'action_url' => 'https://go.elementor.com/wp-dash-apps-go-to-crocoblock/',
-				'image' => $images_url . 'crocoblock.svg',
+				'image' => $images_url . 'crocoblock.png',
 			],
 			[
 				'name' => 'Unlimited Elements',
@@ -72,7 +74,7 @@ class Admin_Apps_Page {
 			],
 			[
 				'name' => 'Essential Addons',
-				'author' => 'WP Developer',
+				'author' => 'WPDeveloper',
 				'author_url' => 'https://go.elementor.com/wp-dash-apps-author-uri-wpdeveloper/',
 				'badge' => '20% Off',
 				'description' => 'Essential Addons is the ultimate library for Elementor, with 1 Million+ users and 100+ widgets & extensions to enhance web-building & design experiences.',
@@ -97,11 +99,32 @@ class Admin_Apps_Page {
 				'author' => 'Brainstorm Force',
 				'author_url' => 'https://go.elementor.com/wp-dash-apps-author-uri-ultimate-elementor/',
 				'description' => 'Ultimate Addons for Elementor is a powerful plugin with advanced widgets, templates, and features for designing stunning websites using Elementor.',
-				'badge' => 'Premium',
+				'badge' => '25% Off',
 				'offering' => 'Discount is automatically applied',
 				'action_label' => 'Let\'s Go',
 				'action_url' => 'https://go.elementor.com/wp-dash-apps-go-to-ultimate-elementor/',
 				'image' => $images_url . 'uae.svg',
+			],
+			[
+				'name' => 'Fiverr Logo Maker',
+				'author' => 'Fiverr',
+				'author_url' => 'https://go.elementor.com/wp-dash-apps-author-uri-fiverr/',
+				'description' => 'Craft your brand\'s identity on Fiverr Logo Maker. Upload logo, choose typography & colors for versatile variations. Elevate your brand effortlessly.',
+				'badge' => 'Premium',
+				'action_label' => 'Let\'s Go',
+				'action_url' => 'https://go.elementor.com/wp-dash-apps-author-uri-fiverr/',
+				'image' => $images_url . 'fiverr.svg',
+			],
+			[
+				'name' => 'Hover Custom Domains',
+				'author' => 'Tucows',
+				'author_url' => 'https://go.elementor.com/wp-dash-apps-author-uri-hover/',
+				'description' => 'Elevate your website with a custom domain for maximum online impact. Enjoy exclusive Elementor user discounts through our Hover partnership.',
+				'badge' => '10% Off',
+				'offering' => 'Discount is automatically applied',
+				'action_label' => 'Let\'s Go',
+				'action_url' => 'https://go.elementor.com/wp-dash-apps-go-to-hover/',
+				'image' => $images_url . 'hover.svg',
 			],
 		];
 
@@ -125,7 +148,7 @@ class Admin_Apps_Page {
 				'author' => 'Accessibility Team',
 				'author_url' => 'https://go.elementor.com/wp-dash-apps-author-uri-wpaccessibility/',
 				'badge' => 'Free',
-				'description' => 'Activity Log is the easiest way to keep track of your user activity. Find out exactly who does what on your website, and perform the most comprehensive security audit.',
+				'description' => 'The fastest plugin to enhance WordPress website accessibility. Empower your website to be user-friendly for all visitors.',
 				'learn_more_url' => 'https://go.elementor.com/wp-dash-apps-learn-more-wpaccessibility/',
 				'action_label' => 'Install',
 				'action_url' => '#',

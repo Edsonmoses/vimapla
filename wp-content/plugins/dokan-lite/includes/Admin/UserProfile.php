@@ -284,12 +284,12 @@ class UserProfile {
                             <input type="text" disabled class="regular-text" value="<?php echo isset( $store_settings['payment']['bank']['routing_number'] ) ? esc_attr( $store_settings['payment']['bank']['routing_number'] ) : ''; ?>">
                         </td>
                     </tr>
-                    <tr>
-                        <th><?php esc_html_e( 'Bank IBAN ', 'dokan-lite' ); ?></th>
+                   <!-- <tr>
+                        <th><?php /*esc_html_e( 'Bank IBAN ', 'dokan-lite' ); ?></th>
                         <td>
-                            <input type="text" disabled class="regular-text" value="<?php echo isset( $store_settings['payment']['bank']['iban'] ) ? esc_attr( $store_settings['payment']['bank']['iban'] ) : ''; ?>">
+                            <input type="text" disabled class="regular-text" value="<?php echo isset( $store_settings['payment']['bank']['iban'] ) ? esc_attr( $store_settings['payment']['bank']['iban'] ) : ''; */?>">
                         </td>
-                    </tr>
+                    </tr>-->
                     <tr>
                         <th><?php esc_html_e( 'Bank Swift ', 'dokan-lite' ); ?></th>
                         <td>

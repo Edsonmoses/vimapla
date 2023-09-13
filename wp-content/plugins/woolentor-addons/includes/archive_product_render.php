@@ -89,14 +89,33 @@ class Archive_Products_Render extends WC_Shortcode_Products {
                 $query_args['order'] = '';
             }
 
-            // If Fibosearch plugin activate.
-            if( ! isset( $query_args['dgwt_wcas'] ) ){
-                // Get Customizer Setting
-                $default_shorting = get_option('woocommerce_default_catalog_orderby', false );
-                if( $default_shorting !== 'date' ){
-                    add_action( 'pre_get_posts', [ wc()->query, 'product_query' ] );
+            if ( 'yes' !== $settings['paginate'] && !isset( $_GET['wlfilter'] )) {
+
+                if( isset( $settings['orderby'] ) && $settings['orderby'] === 'price' ) {
+                    $query_args['meta_key'] = '_price';
+                    $query_args['orderby']  = 'meta_value_num'; 
+                    $query_args['order'] = strtoupper( $settings['order'] );
+                }else{
+                    $query_args['orderby'] = $settings['orderby'];
+                    $query_args['order'] = strtoupper( $settings['order'] );
+                }
+
+            }else{
+                // If Fibosearch plugin activate.
+                if( ! isset( $query_args['dgwt_wcas'] ) ){
+                    // Get Customizer Setting
+                    $default_shorting = get_option('woocommerce_default_catalog_orderby', false );
+                    if( $query_args['orderby'] !== 'date ID' ){
+                        if( $default_shorting == 'price-desc' && !isset( $_GET['wlfilter'] )){
+                            $query_args['meta_key'] = '_price';
+                            $query_args['orderby']  = 'meta_value_num';
+                        }else{
+                            add_action( 'pre_get_posts', [ wc()->query, 'product_query' ] );
+                        }
+                    }
                 }
             }
+
             $this->is_added_product_filter = true;
             
         } else {

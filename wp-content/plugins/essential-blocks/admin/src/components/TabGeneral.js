@@ -131,17 +131,7 @@ export default function TabGeneral() {
                                 controls={false}
                                 light={introVideoThumb}
                                 playIcon={videoPlayIcon}
-                                // onClickPreview={() => {
-                                // 	setAttributes({
-                                // 		videoConfig: {
-                                // 			...videoConfig,
-                                // 			autoplay: true,
-                                // 		},
-                                // 	});
-                                // }}
-
                                 className="eb-react-player"
-                                // playing
                                 width="100%"
                                 height="100%"
                             />
@@ -288,33 +278,52 @@ export default function TabGeneral() {
                         >
                             <div className="changelog-wrapper">
                                 <div className="changelog-title">
-                                    {__("Version: 4.1.5", "essential-blocks")}
+                                    {__("Version: 4.2.3", "essential-blocks")}
                                     <span className="changelog-date">
-                                        {__("17/07/2023", "essential-blocks")}
+                                        {__("07/09/2023", "essential-blocks")}
                                     </span>
                                 </div>
                                 <ul className="changelog-content">
                                     <li>
                                         {__(
-                                            "Added: Advanced Image block image size option",
+                                            "Added: H tag select control in **Number Counter** Block",
                                             "essential-blocks"
                                         )}
                                     </li>
                                     <li>
                                         {__(
-                                            "Added: Social Share block Open in New Tab option",
+                                            "Added: Custom Id support in **Advanced Tab** Block",
                                             "essential-blocks"
                                         )}
                                     </li>
                                     <li>
                                         {__(
-                                            "Fixed: Advanced Tab block active color not changing",
+                                            "Fixed: **Fluent Forms** Block style not loading in Editor",
                                             "essential-blocks"
                                         )}
                                     </li>
                                     <li>
                                         {__(
-                                            "Fixed: Post Grid block responsive issue conflict with Animation",
+                                            "Fixed: **Post Carousel** Block conflict issue fix with LearnDash",
+                                            "essential-blocks"
+                                        )}
+                                    </li>
+
+                                    <li>
+                                        {__(
+                                            "Fixed: Initial loading issue in **Image Slider** Block",
+                                            "essential-blocks"
+                                        )}
+                                    </li>
+                                    <li>
+                                        {__(
+                                            "Improved: Security Enhancement",
+                                            "essential-blocks"
+                                        )}
+                                    </li>
+                                    <li>
+                                        {__(
+                                            "Minor bug fixes & improvements",
                                             "essential-blocks"
                                         )}
                                     </li>

@@ -43,10 +43,6 @@ const attributes = {
     blockMeta: {
         type: "object",
     },
-    videoSource: {
-        type: "string",
-        default: "youtube",
-    },
     videoURL: {
         type: "string",
         default: "https://www.youtube.com/watch?v=PnZx4ZOMyzI",

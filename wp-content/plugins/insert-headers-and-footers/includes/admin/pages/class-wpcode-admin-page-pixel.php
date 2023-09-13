@@ -25,6 +25,13 @@ class WPCode_Admin_Page_Pixel extends WPCode_Admin_Page {
 	public $view = 'facebook';
 
 	/**
+	 * The capability required to view this page.
+	 *
+	 * @var string
+	 */
+	protected $capability = 'wpcode_manage_conversion_pixels';
+
+	/**
 	 * Call this just to set the page title translatable.
 	 */
 	public function __construct() {

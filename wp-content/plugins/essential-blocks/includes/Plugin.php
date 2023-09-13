@@ -1,6 +1,7 @@
 <?php
 
 namespace EssentialBlocks;
+
 use EssentialBlocks\API\Server;
 use EssentialBlocks\Admin\Admin;
 use EssentialBlocks\Core\Blocks;
@@ -9,15 +10,16 @@ use EssentialBlocks\Core\PostMeta;
 use EssentialBlocks\Utils\Enqueue;
 use EssentialBlocks\Utils\Settings;
 use EssentialBlocks\Core\FontLoader;
-use EssentialBlocks\Core\ModifyWPCore;
 use EssentialBlocks\Core\Maintenance;
 use EssentialBlocks\Integrations\NFT;
+use EssentialBlocks\Core\ModifyWPCore;
 use EssentialBlocks\Core\PageTemplates;
 use EssentialBlocks\Core\BlocksPatterns;
 use EssentialBlocks\Traits\HasSingletone;
 use EssentialBlocks\Integrations\GoogleMap;
 use EssentialBlocks\Integrations\Instagram;
 use EssentialBlocks\Integrations\OpenVerse;
+use EssentialBlocks\Integrations\Pagination;
 use EssentialBlocks\Integrations\GlobalStyles;
 use EssentialBlocks\Integrations\AssetGeneration;
 use EssentialBlocks\Integrations\PluginInstaller;
@@ -25,7 +27,7 @@ use EssentialBlocks\Integrations\PluginInstaller;
 final class Plugin {
     use HasSingletone;
 
-    public $version = '4.1.5';
+    public $version = '4.2.3';
 
     public $admin;
     /**
@@ -56,6 +58,7 @@ final class Plugin {
         $this->set_locale();
 
         $this->load_admin_dependencies();
+
         Maintenance::get_instance();
 
         $this->assets = Enqueue::get_instance( ESSENTIAL_BLOCKS_URL, ESSENTIAL_BLOCKS_DIR_PATH, $this->version );
@@ -65,21 +68,6 @@ final class Plugin {
         $this->admin = Admin::get_instance();
 
         Scripts::get_instance();
-
-        // Fetch Enabled Blocks if not than Default Block List
-        self::$blocks = Blocks::get_instance( self::$settings );
-
-        add_action( 'init', function () {
-            /**
-             * Register a meta `_eb_attr`
-             */
-            PostMeta::get_instance()->register_meta();
-
-            /**
-             * Register all blocks dynamically
-             */
-            self::$blocks->register_blocks( $this->assets );
-        } );
 
         FontLoader::get_instance( 'essential-blocks' );
 
@@ -112,6 +100,24 @@ final class Plugin {
 
         //Global Style Ajax for Store
         GlobalStyles::get_instance();
+
+        // pagination
+        Pagination::get_instance();
+
+        // Fetch Enabled Blocks if not than Default Block List
+        self::$blocks = Blocks::get_instance( self::$settings );
+
+        add_action( 'init', function () {
+            /**
+             * Register a meta `_eb_attr`
+             */
+            PostMeta::get_instance()->register_meta();
+
+            /**
+             * Register all blocks dynamically
+             */
+            self::$blocks->register_blocks( $this->assets );
+        } );
 
         add_action( 'plugins_loaded', [$this, 'plugins_loaded'] );
 
@@ -216,9 +222,6 @@ final class Plugin {
     }
 
     private function load_admin_dependencies() {
-        require_once ESSENTIAL_BLOCKS_DIR_PATH . '/includes/class-helpers.php';
-
-        //Include NFT AJAX Class
-        // require_once ESSENTIAL_BLOCKS_DIR_PATH . '/includes/class-nft-ajax.php';
+        //Admin dependency codes here
     }
 }

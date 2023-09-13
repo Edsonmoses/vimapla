@@ -392,7 +392,7 @@ class Settings {
                 'admin_access'           => [
                     'name'    => 'admin_access',
                     'label'   => __( 'Admin Area Access', 'dokan-lite' ),
-                    'desc'    => __( 'Disallow vendors from accessing the wp-admin dashboard area', 'dokan-lite' ),
+                    'desc'    => __( 'Disallow vendors and customers from accessing the wp-admin dashboard area', 'dokan-lite' ),
                     'type'    => 'switcher',
                     'default' => 'on',
                 ],
@@ -490,7 +490,7 @@ class Settings {
                 'shipping_fee_recipient' => [
                     'name'    => 'shipping_fee_recipient',
                     'label'   => __( 'Shipping Fee Recipient', 'dokan-lite' ),
-                    'desc'    => __( 'Who will be receiving the shipping fees? Note that, tax fees for corresponding shipping method will not be included with shipping fees.', 'dokan-lite' ),
+                    'desc'    => __( 'Who will be receiving the shipping fees', 'dokan-lite' ),
                     'type'    => 'radio',
                     'options' => [
                         'seller' => __( 'Vendor', 'dokan-lite' ),
@@ -500,19 +500,8 @@ class Settings {
                 ],
                 'tax_fee_recipient'      => [
                     'name'    => 'tax_fee_recipient',
-                    'label'   => __( 'Product Tax Fee Recipient', 'dokan-lite' ),
-                    'desc'    => __( 'Who will be receiving the tax fees for products? Note that, shipping tax fees will not be included with product tax.', 'dokan-lite' ),
-                    'type'    => 'radio',
-                    'options' => [
-                        'seller' => __( 'Vendor', 'dokan-lite' ),
-                        'admin'  => __( 'Admin', 'dokan-lite' ),
-                    ],
-                    'default' => 'seller',
-                ],
-                'shipping_tax_fee_recipient'      => [
-                    'name'    => 'shipping_tax_fee_recipient',
-                    'label'   => __( 'Shipping Tax Fee Recipient', 'dokan-lite' ),
-                    'desc'    => __( 'Who will be receiving the tax fees for shipping?', 'dokan-lite' ),
+                    'label'   => __( 'Tax Fee Recipient', 'dokan-lite' ),
+                    'desc'    => __( 'Who will be receiving the tax fees', 'dokan-lite' ),
                     'type'    => 'radio',
                     'options' => [
                         'seller' => __( 'Vendor', 'dokan-lite' ),
@@ -555,13 +544,6 @@ class Settings {
                     'type'    => 'switcher',
                     'default' => 'on',
                     'tooltip' => __( 'Checking this will enable sellers to change the order status. If unchecked, only admin can change the order status.', 'dokan-lite' ),
-                ],
-                'dokan_any_category_selection'       => [
-                    'name'    => 'dokan_any_category_selection',
-                    'label'   => __( 'Select any category', 'dokan-lite' ),
-                    'desc'    => __( 'Allow vendors to select any category while creating/editing products.', 'dokan-lite' ),
-                    'type'    => 'switcher',
-                    'default' => 'off',
                 ],
             ]
         );
@@ -758,7 +740,6 @@ class Settings {
                 'hide_vendor_info'           => [
                     'name'    => 'hide_vendor_info',
                     'label'   => __( 'Hide Vendor Info', 'dokan-lite' ),
-                    'desc'    => __( 'Hide vendor contact info from single store page.', 'dokan-lite' ),
                     'type'    => 'multicheck',
                     'default' => [
                         'email'   => '',

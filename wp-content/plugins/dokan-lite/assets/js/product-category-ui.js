@@ -5,11 +5,11 @@ dokanWebpack([6],{
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_asyncToGenerator__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_asyncToGenerator__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_asyncToGenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_asyncToGenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_toConsumableArray__ = __webpack_require__(288);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_toConsumableArray__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__babel_runtime_regenerator__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__babel_runtime_regenerator__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__babel_runtime_regenerator__);
 
 
@@ -214,24 +214,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       };
     },
     loadChildCategories: function loadChildCategories(catlevel, termId, name, haschild) {
-      /**
-       * If enabled any one middle category in dokan product multi-step category selection.
-       */
-      var middleCategorySelection = dokan_product_category_data.any_category_selection; // If selected category has no child OR middle category selection is true then enable the category select done button else disable.
-
-      if (!haschild || true === Boolean(middleCategorySelection)) {
+      if (!haschild) {
         ProductCategory.disableDoneBtn(false);
-      } else {
-        ProductCategory.disableDoneBtn();
-      } // If the selected category has more children category then show them.
-
-
-      if (haschild) {
-        var categories = ProductCategory.getCategoriesWithParentId(termId, catlevel + 1);
-        categoriesState.push(categories);
-        ProductCategory.updateCategoryUi();
-        ProductCategory.scrollTo(catlevel);
+        return;
       }
+
+      ProductCategory.disableDoneBtn();
+      var categories = ProductCategory.getCategoriesWithParentId(termId, catlevel + 1);
+      categoriesState.push(categories);
+      ProductCategory.updateCategoryUi();
+      ProductCategory.scrollTo(catlevel);
     },
     updateSearchResultUi: function updateSearchResultUi() {
       var html = '';

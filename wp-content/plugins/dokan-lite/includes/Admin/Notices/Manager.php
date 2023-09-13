@@ -106,11 +106,13 @@ class Manager {
      * @return array
      */
     public function show_permalink_setting_notice( $notices ) {
-        if ( empty( get_option( 'permalink_structure' ) ) ) {
+        $structure = get_option( 'permalink_structure' );
+
+        if ( empty( $structure ) || '/archives/%post_id%' === $structure ) {
             $notices[] = [
                 'type'        => 'alert',
                 /* translators: %s permalink settings url */
-                'description' => sprintf( __( 'The <strong>Plain</strong> permalink structure is not working for the Dokan plugin. Please change your permalink structure from <a href="%s">Settings > Permalinks</a>', 'dokan-lite' ), admin_url( 'options-permalink.php' ) ),
+                'description' => sprintf( __( 'The <strong>Plain and Numeric</strong> permalink structure is not working for the Dokan plugin. Please change your permalink structure from <a href="%s">Settings > Permalinks</a>', 'dokan-lite' ), admin_url( 'options-permalink.php' ) ),
                 'priority'    => 1,
                 'actions'     => [
                     [

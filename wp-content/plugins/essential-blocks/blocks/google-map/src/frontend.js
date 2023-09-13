@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
         return;
     }
 
+    if (!window.google) {
+        return;
+    }
+
     for (let i = 0; i < mapContainers.length; i++) {
         let map = mapContainers[i];
 

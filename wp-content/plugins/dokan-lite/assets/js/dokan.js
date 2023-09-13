@@ -485,9 +485,12 @@ jQuery(function($) {
 
                     if ( 0 < unit_total_tax ) {
                         var round_at_subtotal = 'yes' === dokan_refund.round_at_subtotal;
+                        var precision         = dokan_refund[
+                            round_at_subtotal ? 'rounding_precision' : 'currency_format_num_decimals'
+                        ];
 
                         refund_line_total_tax.val(
-                            parseFloat( accounting.formatNumber( unit_total_tax * refund_qty, dokan_refund.rounding_precision, '' ) )
+                            parseFloat( accounting.formatNumber( unit_total_tax * refund_qty, precision, '' ) )
                                 .toString()
                                 .replace( '.', dokan_refund.mon_decimal_point )
                         ).trigger( 'change' );
@@ -961,7 +964,6 @@ jQuery(function($) {
                         $( '#dokan-add-product-popup' ).iziModal('close');
                         window.location.href = resp.data;
                     } else {
-                        product_featured_frame = undefined;
                         $('.dokan-dashboard-product-listing-wrapper').load( window.location.href + ' table.product-listing-table' );
                         Dokan_Editor.modal.iziModal('resetContent');
                         Dokan_Editor.openProductPopup();
@@ -1301,9 +1303,6 @@ jQuery(function($) {
                     product_gallery_frame = wp.media({
                         // Set the title of the modal.
                         title: dokan.i18n_choose_gallery,
-                        library: {
-                            type: 'image',
-                        },
                         button: {
                             text: dokan.i18n_choose_gallery_btn_text,
                         },
@@ -1315,26 +1314,26 @@ jQuery(function($) {
                         var selection = product_gallery_frame.state().get('selection');
 
                         selection.map( function( attachment ) {
-                            attachment     = attachment.toJSON();
-                            attachment_ids = [];
 
-                            // Check if attachment doesn't exist or attachment type is not image
-                            if ( ! attachment.id || 'image' !== attachment.type ) {
-                                return;
+                            attachment = attachment.toJSON();
+
+                            if ( attachment.id ) {
+                                attachment_ids = [];
+
+                                $('<li class="image" data-attachment_id="' + attachment.id + '">\
+                                        <img src="' + attachment.url + '" />\
+                                        <a href="#" class="action-delete">&times;</a>\
+                                    </li>').insertBefore( p_images.find('li.add-image') );
+
+                                $('#product_images_container ul li.image').css('cursor','default').each(function() {
+                                    var attachment_id = jQuery(this).attr( 'data-attachment_id' );
+                                    attachment_ids.push( attachment_id );
+                                });
                             }
 
-                            $('<li class="image" data-attachment_id="' + attachment.id + '">\
-                                    <img src="' + attachment.url + '" />\
-                                    <a href="#" class="action-delete">&times;</a>\
-                                </li>').insertBefore( p_images.find('li.add-image') );
-
-                            $('#product_images_container ul li.image').css('cursor','default').each(function() {
-                                var attachment_id = jQuery(this).attr( 'data-attachment_id' );
-                                attachment_ids.push( attachment_id );
-                            });
-
-                            images_gid.val( attachment_ids.join(',') );
                         } );
+
+                        images_gid.val( attachment_ids.join(',') );
                     });
 
                     product_gallery_frame.open();
@@ -1408,9 +1407,6 @@ jQuery(function($) {
                     product_featured_frame = wp.media({
                         // Set the title of the modal.
                         title: dokan.i18n_choose_featured_img,
-                        library: {
-                            type: 'image',
-                        },
                         button: {
                             text: dokan.i18n_choose_featured_img_btn_text,
                         }
@@ -1421,11 +1417,6 @@ jQuery(function($) {
 
                         selection.map( function( attachment ) {
                             attachment = attachment.toJSON();
-
-                            // Check if the attachment type is image.
-                            if ( 'image' !== attachment.type ) {
-                                return;
-                            }
 
                             // set the image hidden id
                             self.siblings('input.dokan-feat-image-id').val(attachment.id);
@@ -1620,6 +1611,49 @@ jQuery(function($) {
 
             return false;
         });
+
+        function dokan_show_earning_suggestion( callback ) {
+            let commission = $('span.vendor-earning').attr( 'data-commission' );
+            let product_id = $( 'span.vendor-earning' ).attr( 'data-product-id' );
+            let product_price = $( 'input.dokan-product-regular-price' ).val();
+            let sale_price = $( 'input.dokan-product-sales-price' ).val();
+            let earning_suggestion = $('.simple-product span.vendor-price');
+
+            earning_suggestion.html( dokan.i18n_calculating );
+
+            $.get( dokan.ajaxurl, {
+                action: 'get_vendor_earning',
+                product_id: product_id,
+                product_price: product_price,
+                product_price: sale_price ? sale_price : product_price,
+                _wpnonce: dokan.nonce
+            } )
+            .done( ( response ) => {
+                earning_suggestion.html( response );
+
+                if ( typeof callback === 'function' ) {
+                    callback();
+                }
+            } );
+        }
+
+        $( "input.dokan-product-regular-price, input.dokan-product-sales-price" ).on( 'keyup', _.debounce( () => {
+            dokan_show_earning_suggestion( function() {
+
+                if ( $( '#product_type' ).val() == 'simple' || $( '#product_type' ).text() == '' ) {
+                    if ( Number( $('.simple-product span.vendor-price').text() ) < 0  ) {
+                        $( $('.dokan-product-less-price-alert').removeClass('dokan-hide') );
+                        $( 'input[type=submit]' ).attr( 'disabled', 'disabled' );
+                        $( 'button[type=submit]' ).attr( 'disabled', 'disabled' );
+                    } else {
+                        $( $('.dokan-product-less-price-alert').addClass('dokan-hide') );
+                        $( 'input[type=submit]' ).removeAttr( 'disabled');
+                        $( 'button[type=submit]' ).removeAttr( 'disabled');
+                    }
+                }
+            } );
+
+        }, 750 ) );
 
         /**
          * Handle the editing of the post_name. Create the required HTML elements and
@@ -1868,11 +1902,10 @@ jQuery(function($) {
     form_group.addClass('has-error').append(error);
   };
 
-  var validatorSuccess = function(error, element) {
+  var validatorSuccess = function(label, element) {
     $(element)
       .closest('.dokan-form-group')
       .removeClass('has-error');
-    $(error).remove();
   };
 
   var api = wp.customize;
@@ -3011,30 +3044,6 @@ jQuery(function($) {
   }
 }
 
-/**
- * Shows bulk action delete operation confirmation
- *
- * @param {object} event
- * @param {string} message
- * @param {string} inputSelector
- * @param {string} formSelector
- */
-async function dokan_bulk_delete_prompt( event, message, inputSelector, formSelector ) {
-  if ( 'delete' === jQuery( inputSelector ).val() ) {
-    // only prevent default if action is delete
-    event.preventDefault();
-
-    let answer = await dokan_sweetalert( message, {
-      action  : 'confirm',
-      icon    : 'warning'
-    } );
-
-    if( answer.isConfirmed ) {
-      jQuery( formSelector ).submit()
-    }
-  }
-}
-
 ;(function($) {
     var storeLists = {
         /**
@@ -3448,7 +3457,7 @@ async function dokan_bulk_delete_prompt( event, message, inputSelector, formSele
                 modal = $( '#dokan-withdraw-request-popup' ).iziModal( {
                     width       : 690,
                     overlayColor: 'rgba(0, 0, 0, 0.8)',
-                    headerColor : dokan.modal_header_color,
+                    headerColor : '#b11d1db8',
                 } );
 
             modal.iziModal( 'setContent', withdrawTemplate().trim() );
@@ -3461,7 +3470,7 @@ async function dokan_bulk_delete_prompt( event, message, inputSelector, formSele
                 modal = $( '#dokan-withdraw-schedule-popup' ).iziModal( {
                     width       : 690,
                     overlayColor: 'rgba(0, 0, 0, 0.8)',
-                    headerColor : dokan.modal_header_color,
+                    headerColor : '#b11d1db8',
                 } );
 
             modal.iziModal( 'setContent', scheduleTemplate().trim() );

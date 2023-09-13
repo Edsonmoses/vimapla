@@ -201,6 +201,10 @@ if(!is_user_logged_in()){
 add_action('init','custom_login_page');
 }
 
+/***
+ *  set ” I am a vendor ” by default?
+ */
+
 remove_action( 'woocommerce_register_form', 'dokan_seller_reg_form_fields' );
 
 add_action( 'woocommerce_register_form', 'dokan_custom_reg_vendor_selected', 12 );
@@ -239,69 +243,9 @@ function vimapla_display_username_wp_menu( $menu_items ) {
     return $menu_items;
 }
 add_filter( 'wp_nav_menu_objects', 'vimapla_display_username_wp_menu' );
-//dokan custom fields
-function dokan_custom_seller_registration_required_fields( $required_fields ) {
-    $required_fields['country_name'] = __( 'Please enter your Country', 'dokan-custom' );
-    $required_fields['district_name'] = __( 'Please enter your District', 'dokan-custom' );
-    $required_fields['city_name'] = __( 'Please enter your City', 'dokan-custom' );
-    return $required_fields;
-};
-add_filter( 'dokan_seller_registration_required_fields', 'dokan_custom_seller_registration_required_fields' );
-function dokan_custom_new_seller_created( $vendor_id, $dokan_settings ) {
-    $post_data = wp_unslash( $_POST );
-    $country_name =  $post_data['country_name'];
-    $district_name =  $post_data['district_name'];
-    $city_name =  $post_data['city_name'];
-   
-    update_user_meta( $vendor_id, 'dokan_custom_country_name', $country_name, 'dokan_custom_district_name', $district_name, 'dokan_custom_city_name', $city_name );
-}
-add_action( 'dokan_new_seller_created', 'dokan_custom_new_seller_created', 10, 2 );
-  /* Add custom profile fields (call in theme : echo $curauth->fieldname;) */ 
-add_action( 'dokan_seller_meta_fields', 'my_show_extra_profile_fields' );
-function my_show_extra_profile_fields( $user ) { ?>
-    <?php if ( ! current_user_can( 'manage_woocommerce' ) ) {
-            return;
-        }
-        if ( ! user_can( $user, 'dokandar' ) ) {
-            return;
-        }
-         $country_name  = get_user_meta( $user->ID, 'dokan_custom_country_name', true );
-         $district_name  = get_user_meta( $user->ID, 'dokan_custom_district_name', true );
-         $city_name  = get_user_meta( $user->ID, 'dokan_custom_city_name', true );
-     ?>
-         <tr>
-                    <th><?php esc_html_e( 'Country', 'dokan-lite' ); ?></th>
-                    <td>
-                        <input type="text" name="country_name" class="regular-text" value="<?php echo esc_attr($country_name); ?>"/>
-                    </td>
-         </tr>
-         <tr>
-                    <th><?php esc_html_e( 'District', 'dokan-lite' ); ?></th>
-                    <td>
-                        <input type="text" name="district_name" class="regular-text" value="<?php echo esc_attr($district_name); ?>"/>
-                    </td>
-         </tr>
-         <tr>
-                    <th><?php esc_html_e( 'City', 'dokan-lite' ); ?></th>
-                    <td>
-                        <input type="text" name="city_name" class="regular-text" value="<?php echo esc_attr($city_name); ?>"/>
-                    </td>
-         </tr>
-    <?php
- }
-add_action( 'personal_options_update', 'my_save_extra_profile_fields' );
-add_action( 'edit_user_profile_update', 'my_save_extra_profile_fields' );
-function my_save_extra_profile_fields( $user_id ) {
-if ( ! current_user_can( 'manage_woocommerce' ) ) {
-            return;
-        }
-    update_usermeta( $user_id, 'dokan_custom_country_name', $_POST['country_name'] );
-    update_usermeta( $user_id, 'dokan_custom_district_name', $_POST['district_name'] );
-    update_usermeta( $user_id, 'dokan_custom_city_name', $_POST['city_name'] );
-}
 
 /**
-WooCommerce Lost Password Shortcode
+*WooCommerce Lost Password Shortcode
 **/
 
 function njengah_lost_password_form( $atts ) {

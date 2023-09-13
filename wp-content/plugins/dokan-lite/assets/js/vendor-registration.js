@@ -16,7 +16,6 @@ var Dokan_Vendor_Registration = {
         $( '#seller-url', form ).on( 'focusout', this.checkSlugAvailability );
 
         this.validationLocalized();
-        this.handlePasswordStrengthObserver();
         // this.validate(this);
     },
 
@@ -39,16 +38,16 @@ var Dokan_Vendor_Registration = {
     showSellerForm: function() {
         var value = $(this).val();
 
-        if ( value === 'customer') {
+        if ( value === 'seller') {
             $('.show_if_seller').find( 'input, select' ).removeAttr( 'disabled' );
             $('.show_if_seller').slideDown();
 
             if ( $( '.tc_check_box' ).length > 0 ) {
-                $('button[name=register]').removeAttr('disabled','disabled');
+                $('button[name=register]').attr('disabled','disabled');
             }
 
         } else {
-            $('.show_if_seller').find( 'input, select' ).removeAttr( 'disabled', 'disabled' );
+            $('.show_if_seller').find( 'input, select' ).attr( 'disabled', 'disabled' );
             $('.show_if_seller').slideUp();
 
             if ( $( '.tc_check_box' ).length > 0 ) {
@@ -65,9 +64,9 @@ var Dokan_Vendor_Registration = {
             $( 'button[name=register]' ).removeAttr( 'disabled' );
             $( 'input[name=dokan_migration]' ).removeAttr( 'disabled' );
         } else {
-            $( 'input[name=register]' ).removeAttr( 'disabled', 'disabled' );
-            $( 'button[name=register]' ).removeAttr( 'disabled', 'disabled' );
-            $( 'input[name=dokan_migration]' ).removeAttr( 'disabled', 'disabled' );
+            $( 'input[name=register]' ).attr( 'disabled', 'disabled' );
+            $( 'button[name=register]' ).attr( 'disabled', 'disabled' );
+            $( 'input[name=dokan_migration]' ).attr( 'disabled', 'disabled' );
         }
     },
 
@@ -144,11 +143,9 @@ var Dokan_Vendor_Registration = {
             if ( resp.success === true ) {
                 $('#url-alart').removeClass('text-danger').addClass('text-success');
                 $('#url-alart-mgs').removeClass('text-danger').addClass('text-success').text(dokan.seller.available);
-                $('.woocommerce-form-register__submit').prop('disabled', false);
             } else {
                 $('#url-alart').removeClass('text-success').addClass('text-danger');
                 $('#url-alart-mgs').removeClass('text-success').addClass('text-danger').text(dokan.seller.notAvailable);
-                $('.woocommerce-form-register__submit').prop('disabled', true);
             }
 
             row.unblock();
@@ -171,48 +168,6 @@ var Dokan_Vendor_Registration = {
         dokan_messages.min         = $.validator.format( dokan_messages.min_msg );
 
         $.validator.messages = dokan_messages;
-    },
-
-    handlePasswordStrengthObserver: function() {
-        // Identify the password input element to observe.
-        const elementToObserve  = document.querySelector( '.woocommerce-form-register .password-input' ),
-              AllowedClassNames = [ 'good', 'strong' ];
-
-        // If registration password input field is not exists.
-        if ( ! elementToObserve ) {
-            return;
-        }
-
-        // Create a new instance of `MutationObserver` named `observer`.
-        const observer = new MutationObserver( ( mutationList, observer ) => {
-            for ( const mutation of mutationList ) {
-                // Check if the mutation element class list contains at least an allowed class names.
-                if ( AllowedClassNames.some( className => mutation.target.classList.contains( className ) ) ) {
-                    this.ensureShopSlugAvailability();
-                }
-            }
-        });
-
-        // Call `observe()` on that MutationObserver instance.
-        observer.observe( elementToObserve, { subtree: true, childList: true } );
-    },
-
-    ensureShopSlugAvailability: function() {
-        const slugAvailabilityStatus = $( '#url-alart-mgs' ).hasClass( 'text-success' ),
-              registrationRoleInput  = $( '.vendor-customer-registration input[name="role"]:checked' ),
-              submitButton           = $( '.woocommerce-form-register__submit' );
-
-        // Check if the registration role is `seller`.
-        if ( 'seller' !== registrationRoleInput.val() ) {
-            return;
-        }
-
-        // Enable/disable submit button based on shop slug availability.
-        if ( slugAvailabilityStatus ) {
-            submitButton.prop( 'disabled', false );
-        } else {
-            submitButton.prop( 'disabled', true );
-        }
     }
 };
 
@@ -233,7 +188,7 @@ $(function() {
     }
 
     // disable migration button if checkbox isn't checked
-    if ( $( '.tc_check_box' ).length > 0 ){
+    if ( $( '.tc_check_box' ).length > 1 ){
         $( 'input[name=dokan_migration]' ).removeAttr( 'disabled', 'disabled' );
         $( 'input[name=register]' ).removeAttr( 'disabled', 'disabled' );
     }

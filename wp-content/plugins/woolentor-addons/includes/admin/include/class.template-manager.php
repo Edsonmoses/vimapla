@@ -648,18 +648,33 @@ class Woolentor_Template_Manager{
 	public function sampleTemplateImport($data, $post_id){
 
 		if( !empty( $data['sampletmpid'] ) ){
+
+			$templateurl = ($data['sampletmpbuilder'] == 'elementor') ? sprintf( Woolentor_Template_Library_Manager::get_api_templateapi(), $data['sampletmpid'] ) : sprintf( Woolentor_Template_Library_Manager::get_gutenberg_api_endpoint().'/%s', $data['sampletmpid'] );
+			$response_data  = Woolentor_Template_Library_Manager::get_content_remote_request( $templateurl );
+			
+			$this->popBuilderSettings( $response_data, $post_id );
+
 			if( $data['sampletmpbuilder'] == 'elementor' ){
-				$templateurl    = sprintf( Woolentor_Template_Library_Manager::get_api_templateapi(), $data['sampletmpid'] );
-				$response_data  = Woolentor_Template_Library_Manager::get_content_remote_request( $templateurl );
 				$json_value 	= wp_slash( wp_json_encode( $response_data['content']['content'] ) );
 				update_post_meta( $post_id, '_elementor_data', $json_value );
 			}else{
-				$templateurl    = sprintf( Woolentor_Template_Library_Manager::get_gutenberg_api_endpoint().'/%s', $data['sampletmpid'] );
-				$response_data  = Woolentor_Template_Library_Manager::get_content_remote_request( $templateurl );
 				wp_update_post( ['ID' => $post_id, 'post_content'=> $response_data['content']] );
 			}
 		}
 		
+	}
+
+	/**
+	 * Add PopupBuilder Additional Settings
+	 *
+	 * @param [type] $data
+	 * @param [type] $post_id
+	 * @return void
+	 */
+	public function popBuilderSettings( $data, $post_id ){
+		if( !empty( $data['type'] ) && $data['type'] == 'popup' ){
+			update_post_meta( $post_id, '_wlpb_popup_seetings', $data['popup_settings']);
+		}
 	}
 
     /**

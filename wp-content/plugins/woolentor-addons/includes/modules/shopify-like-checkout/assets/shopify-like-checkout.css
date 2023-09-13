@@ -303,6 +303,7 @@
 
 .woolentor-checkout__box .input-text::-webkit-input-placeholder {
     opacity: 0;
+    filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     -webkit-transition: inherit;
     transition: inherit;
@@ -310,6 +311,7 @@
 
 .woolentor-checkout__box .input-text:focus::-webkit-input-placeholder {
     opacity: 1;
+    filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
@@ -334,6 +336,7 @@
     touch-action: manipulation;
     background: #fff url(../images/icons/selector-icon.webp) no-repeat center right 14px;
     background-color: #fff;
+    appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
 }
@@ -546,6 +549,7 @@
     position: absolute;
     right: 0;
     opacity: 0;
+    filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 }
 
@@ -647,6 +651,7 @@
 .woolentor-checkout__box ul li .shipping_method,
 .woolentor-checkout__box #payment .payment_methods li.wc_payment_method>input[type=radio]:first-child,
 .woolentor-checkout__box .woolentor-footer--3 .wc-terms-and-conditions input[type="checkbox"] {
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
 }
@@ -699,6 +704,7 @@
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
     opacity: 0;
+    filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     width: 10px;
     height: 8px;
@@ -713,6 +719,7 @@
     -webkit-transition-delay: 0.1s;
     transition-delay: 0.1s;
     opacity: 1;
+    filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 }
 
@@ -797,6 +804,17 @@
 .woolentor-checkout__product-name {
     font-weight: 600;
     font-size: 14px;
+}
+
+.woolentor-checkout__product-meta dl.variation{
+    margin: 0;
+}
+.woolentor-checkout__product-meta dl.variation dt{
+    float: left;
+    clear: both;
+    margin-right: 0.25em;
+    list-style: none outside;
+    font-weight: 500;
 }
 
 .woolentor-checkout__product-price {

@@ -1,5 +1,6 @@
 <?php
 use EssentialBlocks\blocks\Row;
+use EssentialBlocks\blocks\Icon;
 use EssentialBlocks\blocks\PopUp;
 use EssentialBlocks\blocks\Button;
 use EssentialBlocks\blocks\Notice;
@@ -43,7 +44,7 @@ use EssentialBlocks\blocks\InteractivePromo;
 use EssentialBlocks\blocks\AdvancedNavigation;
 
 return [
-    'accordion'            => [
+    'accordion'                 => [
         'label'      => __( 'Accordion', 'essential-blocks' ),
         'value'      => 'accordion',
         'visibility' => 'true',
@@ -53,7 +54,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/accordion/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/accordion.svg'
     ],
-    'button'               => [
+    'button'                    => [
         'label'      => __( 'Button', 'essential-blocks' ),
         'value'      => 'button',
         'visibility' => 'true',
@@ -62,7 +63,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/button/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/button.svg'
     ],
-    'call_to_action'       => [
+    'call_to_action'            => [
         'label'      => __( 'Call To Action', 'essential-blocks' ),
         'value'      => 'call_to_action',
         'visibility' => 'true',
@@ -71,7 +72,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/call-to-action/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/call-to-action.svg'
     ],
-    'countdown'            => [
+    'countdown'                 => [
         'label'      => __( 'Countdown', 'essential-blocks' ),
         'value'      => 'countdown',
         'visibility' => 'true',
@@ -81,7 +82,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/countdown/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/countdown.svg'
     ],
-    'dual_button'          => [
+    'dual_button'               => [
         'label'      => __( 'Dual Button', 'essential-blocks' ),
         'value'      => 'dual_button',
         'visibility' => 'true',
@@ -90,7 +91,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/dual-button/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/dual-button.svg'
     ],
-    'flipbox'              => [
+    'flipbox'                   => [
         'label'      => __( 'Flipbox', 'essential-blocks' ),
         'value'      => 'flipbox',
         'visibility' => 'true',
@@ -100,7 +101,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/flipbox/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/flipbox.svg'
     ],
-    'advanced_heading'     => [
+    'advanced_heading'          => [
         'label'      => __( 'Advanced Heading', 'essential-blocks' ),
         'value'      => 'advanced_heading',
         'visibility' => 'true',
@@ -109,7 +110,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/heading/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/advanced-heading.svg'
     ],
-    'image_comparison'     => [
+    'image_comparison'          => [
         'label'      => __( 'Image Comparison', 'essential-blocks' ),
         'value'      => 'image_comparison',
         'visibility' => 'true',
@@ -118,7 +119,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/image-comparison/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/image-comparison.svg'
     ],
-    'image_gallery'        => [
+    'image_gallery'             => [
         'label'      => __( 'Image Gallery', 'essential-blocks' ),
         'value'      => 'image_gallery',
         'visibility' => 'true',
@@ -128,7 +129,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-image-gallery/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/image-gallery.svg'
     ],
-    'infobox'              => [
+    'infobox'                   => [
         'label'      => __( 'Infobox', 'essential-blocks' ),
         'value'      => 'infobox',
         'visibility' => 'true',
@@ -138,7 +139,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/infobox/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/infobox.svg'
     ],
-    'instagram_feed'       => [
+    'instagram_feed'            => [
         'label'      => __( 'Instagram Feed', 'essential-blocks' ),
         'value'      => 'instagram_feed',
         'visibility' => 'true',
@@ -147,7 +148,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/instagram-feed/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/instagram-feed.svg'
     ],
-    'interactive_promo'    => [
+    'interactive_promo'         => [
         'label'      => __( 'Interactive Promo', 'essential-blocks' ),
         'value'      => 'interactive_promo',
         'visibility' => 'true',
@@ -156,7 +157,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/interactive-promo/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/interactive-promo.svg'
     ],
-    'notice'               => [
+    'notice'                    => [
         'label'      => __( 'Notice', 'essential-blocks' ),
         'value'      => 'notice',
         'visibility' => 'true',
@@ -165,7 +166,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/notice/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/notice.svg'
     ],
-    'parallax_slider'      => [
+    'parallax_slider'           => [
         'label'      => __( 'Parallax Slider', 'essential-blocks' ),
         'value'      => 'parallax_slider',
         'visibility' => 'true',
@@ -174,7 +175,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/parallax-slider/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/parallax-slider.svg'
     ],
-    'pricing_table'        => [
+    'pricing_table'             => [
         'label'      => __( 'Pricing Table', 'essential-blocks' ),
         'value'      => 'pricing_table',
         'visibility' => 'true',
@@ -184,7 +185,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/pricing-table/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/pricing-table.svg'
     ],
-    'progress_bar'         => [
+    'progress_bar'              => [
         'label'      => __( 'Progress Bar', 'essential-blocks' ),
         'value'      => 'progress_bar',
         'visibility' => 'true',
@@ -194,7 +195,7 @@ return [
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/progress-bar.svg'
 
     ],
-    'slider'               => [
+    'slider'                    => [
         'label'      => __( 'Slider', 'essential-blocks' ),
         'value'      => 'slider',
         'visibility' => 'true',
@@ -204,7 +205,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/slider/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/slider.svg'
     ],
-    'social'               => [
+    'social'                    => [
         'label'      => __( 'Social Icons', 'essential-blocks' ),
         'value'      => 'social',
         'visibility' => 'true',
@@ -213,7 +214,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/social/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/social.svg'
     ],
-    'social_share'         => [
+    'social_share'              => [
         'label'      => __( 'Social Share', 'essential-blocks' ),
         'value'      => 'social_share',
         'visibility' => 'true',
@@ -222,7 +223,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-social-share/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/social-share.svg'
     ],
-    'team_member'          => [
+    'team_member'               => [
         'label'      => __( 'Team Member', 'essential-blocks' ),
         'value'      => 'team_member',
         'visibility' => 'true',
@@ -231,7 +232,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/team-member/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/team-member.svg'
     ],
-    'testimonial'          => [
+    'testimonial'               => [
         'label'      => __( 'Testimonial', 'essential-blocks' ),
         'value'      => 'testimonial',
         'visibility' => 'true',
@@ -240,7 +241,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/testimonial/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/testimonial.svg'
     ],
-    'toggle_content'       => [
+    'toggle_content'            => [
         'label'      => __( 'Toggle Content', 'essential-blocks' ),
         'value'      => 'toggle_content',
         'visibility' => 'true',
@@ -249,7 +250,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-toggle-content/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/toggle-content.svg'
     ],
-    'typing_text'          => [
+    'typing_text'               => [
         'label'      => __( 'Typing Text', 'essential-blocks' ),
         'value'      => 'typing_text',
         'visibility' => 'true',
@@ -258,7 +259,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/typing-text/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/typing-text.svg'
     ],
-    'wrapper'              => [
+    'wrapper'                   => [
         'label'      => __( 'Wrapper', 'essential-blocks' ),
         'value'      => 'wrapper',
         'visibility' => 'true',
@@ -267,7 +268,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/block-wrapper/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/wrapper.svg'
     ],
-    'number_counter'       => [
+    'number_counter'            => [
         'label'      => __( 'Number Counter', 'essential-blocks' ),
         'value'      => 'number_counter',
         'visibility' => 'true',
@@ -276,7 +277,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-number-counter/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/number-counter.svg'
     ],
-    'post_grid'            => [
+    'post_grid'                 => [
         'label'      => __( 'Post Grid', 'essential-blocks' ),
         'value'      => 'post_grid',
         'visibility' => 'true',
@@ -286,7 +287,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-post-grid/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/post-grid.svg'
     ],
-    'feature_list'         => [
+    'feature_list'              => [
         'label'      => __( 'Feature List', 'essential-blocks' ),
         'value'      => 'feature_list',
         'visibility' => 'true',
@@ -295,7 +296,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-feature-list/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/feature-list.svg'
     ],
-    'row'                  => [
+    'row'                       => [
         'label'      => __( 'Row', 'essential-blocks' ),
         'value'      => 'row',
         'visibility' => 'true',
@@ -305,7 +306,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-row/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/row.svg'
     ],
-    'table_of_contents'    => [
+    'table_of_contents'         => [
         'label'      => __( 'Table Of Contents', 'essential-blocks' ),
         'value'      => 'table_of_contents',
         'visibility' => 'true',
@@ -315,7 +316,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-table-of-contents/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/table-of-content.svg'
     ],
-    'fluent_forms'         => [
+    'fluent_forms'              => [
         'label'      => __( 'Fluent Forms', 'essential-blocks' ),
         'value'      => 'fluent_forms',
         'visibility' => 'true',
@@ -324,7 +325,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-fluent-forms/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/fluent-forms.svg'
     ],
-    'advanced_tabs'        => [
+    'advanced_tabs'             => [
         'label'      => __( 'Advanced Tabs', 'essential-blocks' ),
         'value'      => 'advanced_tabs',
         'visibility' => 'true',
@@ -333,7 +334,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-advanced-tabs/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/advanced-tabs.svg'
     ],
-    'advanced_navigation'  => [
+    'advanced_navigation'       => [
         'label'      => __( 'Advanced Navigation', 'essential-blocks' ),
         'value'      => 'advanced_navigation',
         'visibility' => 'true',
@@ -342,7 +343,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-advanced-navigation/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/advanced-navigation.svg'
     ],
-    'woo_product_grid'     => [
+    'woo_product_grid'          => [
         'label'      => __( 'Woo Product Grid', 'essential-blocks' ),
         'value'      => 'woo_product_grid',
         'visibility' => 'true',
@@ -351,7 +352,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/woo-product-grid/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/woo-product-grid.svg'
     ],
-    'advanced_image'       => [
+    'advanced_image'            => [
         'label'      => __( 'Advanced Image', 'essential-blocks' ),
         'value'      => 'advanced_image',
         'visibility' => 'true',
@@ -360,7 +361,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-advanced-image/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/advanced-image.svg'
     ],
-    'wpforms'              => [
+    'wpforms'                   => [
         'label'      => __( 'WPForms', 'essential-blocks' ),
         'value'      => 'wpforms',
         'visibility' => 'true',
@@ -369,7 +370,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-wpforms/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/wpforms.svg'
     ],
-    'post_carousel'        => [
+    'post_carousel'             => [
         'label'      => __( 'Post Carousel', 'essential-blocks' ),
         'value'      => 'post_carousel',
         'visibility' => 'true',
@@ -378,7 +379,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-post-carousel/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/post-carousel.svg'
     ],
-    'advanced_video'       => [
+    'advanced_video'            => [
         'label'      => __( 'Advanced Video', 'essential-blocks' ),
         'value'      => 'advanced_video',
         'visibility' => 'true',
@@ -387,7 +388,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-advanced-video/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/advanced-video.svg'
     ],
-    'popup'                => [
+    'popup'                     => [
         'label'      => __( 'Popup', 'essential-blocks' ),
         'value'      => 'popup',
         'visibility' => 'true',
@@ -396,7 +397,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-popup/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/popup.svg'
     ],
-    'openverse'            => [
+    'openverse'                 => [
         'label'      => __( 'Openverse', 'essential-blocks' ),
         'value'      => 'openverse',
         'visibility' => 'true',
@@ -405,7 +406,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/openverse/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/openverse.svg'
     ],
-    'nft_gallery'          => [
+    'nft_gallery'               => [
         'label'      => __( 'NFT Gallery', 'essential-blocks' ),
         'value'      => 'nft_gallery',
         'visibility' => 'true',
@@ -414,7 +415,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-nft-gallery/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/nft-gallery.svg'
     ],
-    'google_map'           => [
+    'google_map'                => [
         'label'      => __( 'Google Maps', 'essential-blocks' ),
         'value'      => 'google_map',
         'visibility' => 'true',
@@ -424,7 +425,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-google-maps/',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/google-map.svg'
     ],
-    'shape_divider'        => [
+    'shape_divider'             => [
         'label'      => __( 'Shape Divider', 'essential-blocks' ),
         'value'      => 'shape_divider',
         'visibility' => 'true',
@@ -434,8 +435,17 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-shape-divider',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/shape-divider.svg'
     ],
-
-    'advanced_search'      => [
+    'icon'                      => [
+        'label'      => __( 'Icon', 'essential-blocks' ),
+        'value'      => 'icon',
+        'visibility' => 'true',
+        'status'     => 'new',
+        'object'     => Icon::get_instance(),
+        'demo'       => ESSENTIAL_BLOCKS_SITE_URL . 'demo/shape-divider/',
+        'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-shape-divider',
+        'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/icon-picker.svg'
+    ],
+    'advanced_search'           => [
         'label'      => __( 'Advanced Search', 'essential-blocks' ),
         'value'      => 'advanced_search',
         'visibility' => 'true',
@@ -445,7 +455,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-advanced-search',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/adv-search.svg'
     ],
-    'data_table'           => [
+    'data_table'                => [
         'label'      => __( 'Data Table', 'essential-blocks' ),
         'value'      => 'data_table',
         'visibility' => 'true',
@@ -455,7 +465,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-data-table',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/data-table.svg'
     ],
-    'timeline_slider'      => [
+    'timeline_slider'           => [
         'label'      => __( 'Timeline Slider', 'essential-blocks' ),
         'value'      => 'timeline_slider',
         'visibility' => 'true',
@@ -465,7 +475,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-timeline-slider',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/timeline-slider.svg'
     ],
-    'news_ticker'          => [
+    'news_ticker'               => [
         'label'      => __( 'News Ticker', 'essential-blocks' ),
         'value'      => 'news_ticker',
         'visibility' => 'true',
@@ -475,7 +485,7 @@ return [
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-news-ticker',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/news-ticker.svg'
     ],
-    'woo_product_carousel' => [
+    'woo_product_carousel'      => [
         'label'      => __( 'Woo Product Carousel', 'essential-blocks' ),
         'value'      => 'woo_product_carousel',
         'visibility' => 'true',
@@ -484,5 +494,25 @@ return [
         'demo'       => ESSENTIAL_BLOCKS_SITE_URL . 'demo/woo-product-carousel/',
         'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-woo-product-carousel',
         'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/product-carousel.svg'
+    ],
+    'multicolumn_pricing_table' => [
+        'label'      => __( 'Multicolumn Pricing Table', 'essential-blocks' ),
+        'value'      => 'multicolumn_pricing_table',
+        'visibility' => 'true',
+        'status'     => 'new',
+        'is_pro'     => true,
+        'demo'       => ESSENTIAL_BLOCKS_SITE_URL . 'demo/multicolumn-pricing-table',
+        'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-multicolumn-pricing-table',
+        'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/multicolumn-pricing-table.svg'
+    ],
+    'fancy_chart'               => [
+        'label'      => __( 'Fancy Chart', 'essential-blocks' ),
+        'value'      => 'fancy_chart',
+        'visibility' => 'true',
+        'status'     => 'new',
+        'is_pro'     => true,
+        'demo'       => ESSENTIAL_BLOCKS_SITE_URL . 'demo/fancy-chart',
+        'doc'        => ESSENTIAL_BLOCKS_SITE_URL . 'docs/eb-fancy-chart',
+        'icon'       => ESSENTIAL_BLOCKS_ADMIN_URL . 'assets/blocks-icon/fancy-chart.svg'
     ]
 ];

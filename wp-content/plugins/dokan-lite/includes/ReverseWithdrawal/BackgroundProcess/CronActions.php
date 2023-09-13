@@ -130,7 +130,7 @@ class CronActions {
             $args = [
                 'status' => 'all',
                 'paged'  => $i++,
-                'number' => 50,
+                'number' => 10,
                 'fields' => 'ID',
             ];
 

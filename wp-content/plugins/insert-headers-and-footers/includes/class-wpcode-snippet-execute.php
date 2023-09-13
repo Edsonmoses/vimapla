@@ -178,7 +178,7 @@ class WPCode_Snippet_Execute {
 			$options[ $type_key ] = $type_values['label'];
 		}
 
-		return $options;
+		return apply_filters( 'wpcode_code_type_options', $options );
 	}
 
 	/**

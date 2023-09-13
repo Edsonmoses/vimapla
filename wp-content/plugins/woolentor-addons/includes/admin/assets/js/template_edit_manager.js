@@ -21,7 +21,8 @@
             'edit-account',
             'lost-password',
             'reset-password',
-            'thankyou'
+            'thankyou',
+            'popup'
         ],
 
         init: function() {
@@ -39,6 +40,7 @@
                     woolentorTemplateAdmin.manageEditButton( selectedEditor );
                     $('#woolentor-template-editor').find('option[value="gutenberg"]').removeAttr('disabled');
                 }
+
                 woolentorTemplateAdmin.showSampleDemoTypeWise( this.value, selectedEditor );
             });
 
@@ -214,6 +216,9 @@
                         // Show Demo Design
                         woolentorTemplateAdmin.showSampleDemoTypeWise( response.data.tmpType, tmpBuilder );
 
+                        // Fire custom event.
+                        $(document).trigger('woolentor_template_edit_popup_open_ajax_success', [ response.data.tmpType ]);
+
                     },
 
                     complete:function( response ){
@@ -235,11 +240,13 @@
                 document.querySelector("#woolentor-template-type option[value='single']").selected = "true";
                 $('#woolentor-template-default').prop('checked', false);
 
+                let tmpBuilder = WLTMCPT.haselementor === 'yes' ? 'elementor' : 'gutenberg';
+
                 // Disabled Button
                 woolentorTemplateAdmin.enableDisableEditorButton();
 
                 // Show Demo Design
-                woolentorTemplateAdmin.showSampleDemoTypeWise('single');
+                woolentorTemplateAdmin.showSampleDemoTypeWise('single', tmpBuilder);
 
                 // Show Editor Selector Field
                 $('.woolentor-template-editor-field').show();
@@ -247,6 +254,9 @@
             }
 
             $('body.post-type-woolentor-template').addClass('open-editor');
+
+            // Fire custom event.
+            $(document).trigger('woolentor_template_edit_popup_open');
 
         },
 

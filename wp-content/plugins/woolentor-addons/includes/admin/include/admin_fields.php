@@ -2701,6 +2701,14 @@ class Woolentor_Admin_Fields {
                             ),
 
                             array(
+                                'name' => 'short_code_display',
+                                'label'   => esc_html__('Swatches Shortcode', 'woolentor'),
+                                'type'=>'html',
+                                'html'=>'<code>[swatchly_pl_swatches]</code> Use this shortcode to show the variation Swatches.',
+                                'condition' => array( 'pl_position', '==', 'shortcode' ),
+                            ),
+
+                            array(
                                 'name'       => 'pl_custom_position_hook_name',
                                 'type'       => 'text',
                                 'label'      =>  esc_html__('Hook Name', 'woolentor'),
@@ -2776,6 +2784,54 @@ class Woolentor_Admin_Fields {
                         )
 
                     ),
+
+                    array(
+                        'name'     => 'popup_builder_settings',
+                        'label'    => esc_html__( 'Popup Builder', 'woolentor' ),
+                        'type'     => 'module',
+                        'default'  => 'off',
+                        'section'  => 'woolentor_popup_builder_settings',
+                        'option_id'=> 'enable',
+                        'require_settings'  => true,
+                        'setting_fields' => array(
+
+                            array(
+                                'name'    => 'enable',
+                                'label'   => esc_html__( 'Enable / Disable', 'woolentor' ),
+                                'desc'    => esc_html__( 'Enable / disable this module.', 'woolentor' ),
+                                'type'    => 'checkbox',
+                                'default' => 'off',
+                                'class'   => 'woolentor-action-field-left'
+                            ),
+
+                            array(
+                                'name'  => 'width',
+                                'label' => esc_html__( 'Popup Width', 'woolentor' ),
+                                'desc'  => esc_html__( 'You can set the container width of the Popup area. Example: 600px', 'woolentor' ),
+                                'type'              => 'text',
+                                'default'           => '600px',
+                                'class'             => 'woolentor-action-field-left',
+                            ),
+
+                            array(
+                                'name'  => 'height',
+                                'label' => esc_html__( 'Popup Height', 'woolentor' ),
+                                'desc'  => esc_html__( 'You can set the container height of the Popup area. Example: 600px', 'woolentor' ),
+                                'type'              => 'text',
+                                'class'             => 'woolentor-action-field-left',
+                            ),
+
+                            array(
+                                'name'  => 'z_index',
+                                'label' => esc_html__( 'Z-Index', 'woolentor' ),
+                                'desc'  => __( 'You can set the z-index of the Popup. <br>Example: 9999', 'woolentor' ),
+                                'type'              => 'number',
+                                'class'             => 'woolentor-action-field-left',
+                                'default'          => '9999',
+                            ),
+
+                        )
+                    ), // popup_builder_settings
 
                     array(
                         'name'     => 'wishlist',

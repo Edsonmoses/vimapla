@@ -545,6 +545,7 @@ body.post-type-woolentor-template.open-editor{
 }
 .woolentor-template-edit-set-checkbox .woolentor-template-edit-set-checkbox-lable:before {
     content: '';
+    appearance: none;
     -webkit-appearance: none;
     background-color: transparent;
     border: 1px solid #d3dbe7;
@@ -559,6 +560,7 @@ body.post-type-woolentor-template.open-editor{
 }
 .woolentor-template-edit-set-design {
     cursor: pointer;
+    margin-left: auto;
 }
 .woolentor-template-edit-eye-icon {
     border: 1px solid #d3dbe7;

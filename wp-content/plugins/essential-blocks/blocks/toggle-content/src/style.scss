@@ -155,3 +155,12 @@
 [type="checkbox"]:checked + .eb-text-switch-wrapper .eb-toggle-primary-label {
 	opacity: 0.5;
 }
+
+.eb-toggle-content {
+	display: grid;
+}
+.wp-block-essential-blocks-wrapper {
+	grid-column: 1/1;
+	grid-row: 1/1;
+	z-index: 1;
+}

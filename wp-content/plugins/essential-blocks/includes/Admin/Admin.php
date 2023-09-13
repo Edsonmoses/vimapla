@@ -14,6 +14,7 @@ class Admin {
 
     /**
      * Plugin Usage Insight
+     *
      * @var Insights|null
      */
     private $insights = null;
@@ -24,7 +25,7 @@ class Admin {
 
         add_action( 'admin_menu', [$this, 'admin_menu'] );
 
-        //Update message for showing notice for new release
+        // Update message for showing notice for new release
         add_action( 'in_plugin_update_message-essential-blocks/essential-blocks.php', [$this, 'plugin_update'], 10, 2 );
 
         $_blocks_category_hook = version_compare( get_bloginfo( 'version' ), '5.8', '>=' ) ? 'block_categories_all' : 'block_categories';
@@ -39,7 +40,7 @@ class Admin {
         add_action( 'wp_ajax_get_eb_admin_template_count', [$this, 'template_count'] );
         add_action( 'plugin_action_links', [$this, 'eb_menu_action_links'], 10, 2 );
 
-        //Redirect after Plugin is updated
+        // Redirect after Plugin is updated
         add_action( 'admin_init', [$this, 'maybe_redirect'] );
     }
 
@@ -89,13 +90,14 @@ class Admin {
 
     /**
      * Menu Action Links
+     *
      * @since 4.1.0
      */
     public function eb_menu_action_links( $links, $file ) {
         if ( $file === ESSENTIAL_BLOCKS_PLUGIN_BASENAME ) {
             $settings_links = sprintf(
                 __( '<a href="%1$s">Settings</a>' ),
-                admin_url( "admin.php?page=essential-blocks" )
+                admin_url( 'admin.php?page=essential-blocks' )
             );
             array_unshift( $links, $settings_links );
 
@@ -136,19 +138,27 @@ class Admin {
      * WP Insights Integration
      */
     public function plugin_usage_insights() {
-        $this->insights = Insights::get_instance( ESSENTIAL_BLOCKS_FILE, [
-            'opt_in'       => true,
-            'goodbye_form' => true,
-            'item_id'      => 'fa45e4a52a650579e98c'
-        ] );
-        $this->insights->set_notice_options( [
-            'notice'       => __( 'Congratulations, you’ve successfully installed <strong>Essential Blocks for Gutenberg</strong>. We got <strong style="color: #a022ff;">1000+ FREE Gutenberg ready Templates</strong> waiting for you <span class="gift-icon">&#127873;</span>', 'essential-blocks' ),
-            'extra_notice' => __( 'We collect non-sensitive diagnostic data and plugin usage information.
+        $this->insights = Insights::get_instance(
+            ESSENTIAL_BLOCKS_FILE,
+            [
+                'opt_in'       => true,
+                'goodbye_form' => true,
+                'item_id'      => 'fa45e4a52a650579e98c'
+            ]
+        );
+        $this->insights->set_notice_options(
+            [
+                'notice'       => __( 'Congratulations, you’ve successfully installed <strong>Essential Blocks for Gutenberg</strong>. We got <strong>1000+ FREE Gutenberg ready Templates</strong> waiting for you <span class="gift-icon">&#127873;</span>', 'essential-blocks' ),
+                'extra_notice' => __(
+                    'We collect non-sensitive diagnostic data and plugin usage information.
 			Your site URL, WordPress & PHP version, plugins & themes and email address to send you exciting deals. This data lets us make sure this plugin always stays compatible with the most
-			popular plugins and themes.', 'essential-blocks' ),
-            'yes'          => __( 'Send me FREE Templates', 'wpinsight' ),
-            'no'           => __( 'I don\'t want FREE Templates', 'wpinsight' )
-        ] );
+			popular plugins and themes.',
+                    'essential-blocks'
+                ),
+                'yes'          => __( 'Send me FREE Templates', 'wpinsight' ),
+                'no'           => __( 'I don\'t want FREE Templates', 'wpinsight' )
+            ]
+        );
         $this->insights->init();
     }
 
@@ -158,17 +168,20 @@ class Admin {
      * @return void
      */
     public function notices() {
-        $notices = new Notices( [
-            'id'          => 'essential_blocks',
-            'store'       => 'options',
-            'storage_key' => 'notices',
-            'version'     => '1.0.0',
-            'lifetime'    => 3,
-            'styles'      => ESSENTIAL_BLOCKS_URL . 'assets/css/notices.css'
-        ] );
+        $notices = new Notices(
+            [
+                'id'          => 'essential_blocks',
+                'store'       => 'options',
+                'storage_key' => 'notices',
+                'version'     => '1.0.0',
+                'lifetime'    => 3,
+                'styles'      => ESSENTIAL_BLOCKS_URL . 'assets/css/notices.css'
+            ]
+        );
 
         /**
          * Review Notice
+         *
          * @var mixed $message
          */
 
@@ -259,7 +272,7 @@ class Admin {
                     'start'       => $notices->time(),
                     'dismissible' => true,
                     'do_action'   => 'wpdeveloper_notice_clicked_for_essential-blocks',
-                    'display_if'  => !ESSENTIAL_BLOCKS_IS_PRO_ACTIVE
+                    'display_if'  => ! ESSENTIAL_BLOCKS_IS_PRO_ACTIVE
                 ]
             );
         }
@@ -283,11 +296,19 @@ class Admin {
             return;
         }
 
-        wpdev_essential_blocks()->assets->register( 'vendor-bundle', '../../vendor-bundle/index.js' ); //??
+        wpdev_essential_blocks()->assets->register( 'vendor-bundle', '../../vendor-bundle/index.js' );
+        wpdev_essential_blocks()->assets->register( 'flv', 'js/react-player/flv.min.js' );
+        wpdev_essential_blocks()->assets->register( 'dash', 'js/react-player/dash.all.min.js' );
+        wpdev_essential_blocks()->assets->register( 'hls', 'js/react-player/hls.min.js' );
         wpdev_essential_blocks()->assets->enqueue(
             'admin-blocks',
             '../admin/index.js',
-            ['essential-blocks-vendor-bundle']
+            [
+                'essential-blocks-vendor-bundle',
+                'essential-blocks-hls',
+                'essential-blocks-flv',
+                'essential-blocks-dash'
+            ]
         );
 
         wpdev_essential_blocks()->assets->enqueue( 'category-icon', '../lib/update-category-icon/index.js' );
@@ -297,7 +318,7 @@ class Admin {
      * AJAX Save function
      */
     public function save() {
-        if ( ! isset( $_POST['admin_nonce'] ) || ! wp_verify_nonce( $_POST['admin_nonce'], 'admin-nonce' ) ) {
+        if ( ! isset( $_POST['admin_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['admin_nonce'] ), 'admin-nonce' ) ) {
             wp_send_json_error( __( 'Nonce Error', 'essential-blocks' ) );
         }
         if ( ! current_user_can( 'activate_plugins' ) ) {
@@ -305,31 +326,31 @@ class Admin {
         }
 
         if ( isset( $_POST['type'] ) ) {
-            $type  = trim( sanitize_text_field($_POST['type']) );
-            $key   = isset( $_POST['key'] ) ? trim( sanitize_text_field($_POST['key']) ) : '';
-            $value = isset( $_POST['value'] ) ? trim( sanitize_text_field($_POST['value']) ) : '';
+            $type  = trim( sanitize_text_field( $_POST['type'] ) );
+            $key   = isset( $_POST['key'] ) ? trim( sanitize_text_field( $_POST['key'] ) ) : '';
+            $value = isset( $_POST['value'] ) ? trim( sanitize_text_field( $_POST['value'] ) ) : '';
 
             $settings = Settings::get_instance();
 
             switch ( $type ) {
-                case "settings":
-                    /**
-                     * Save blocks Settings options
-                     */
-                    $updated = $settings->save( $key, $value );
-                    wp_send_json_success( $updated );
-                    break;
+            case 'settings':
+                /**
+                 * Save blocks Settings options
+                 */
+                $updated = $settings->save( $key, $value );
+                wp_send_json_success( $updated );
+                break;
 
-                case "enable_disable":
-                    /**
-                     * Save Enable/disable blocks options
-                     */
-                    $value   = json_decode( wp_unslash( $value ), true );
-                    $updated = $settings->save_blocks_option( $value );
-                    wp_send_json_success( $updated );
-                    break;
-                default:
-                    wp_send_json_error( __( 'Something went wrong regarding saving options data.', 'essential-blocks' ) );
+            case 'enable_disable':
+                /**
+                 * Save Enable/disable blocks options
+                 */
+                $value   = json_decode( wp_unslash( $value ), true );
+                $updated = $settings->save_blocks_option( $value );
+                wp_send_json_success( $updated );
+                break;
+            default:
+                wp_send_json_error( __( 'Something went wrong regarding saving options data.', 'essential-blocks' ) );
             }
         } else {
             wp_send_json_error( __( 'Something went wrong regarding saving options data.', 'essential-blocks' ) );
@@ -340,12 +361,15 @@ class Admin {
      * AJAX Get function
      */
     public function get() {
-        if ( ! isset( $_POST['admin_nonce'] ) || ! wp_verify_nonce( $_POST['admin_nonce'], 'admin-nonce' ) ) {
+        if ( ! isset( $_POST['admin_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['admin_nonce'] ), 'admin-nonce' ) ) {
             wp_send_json_error( __( 'Nonce Error', 'essential-blocks' ) );
+        }
+        if ( ! current_user_can( 'edit_posts' ) ) {
+            wp_send_json_error( __( 'You are not authorized to save this!', 'essential-blocks' ) );
         }
 
         if ( isset( $_POST['key'] ) ) {
-            $key      = trim( sanitize_text_field($_POST['key']) );
+            $key      = trim( sanitize_text_field( $_POST['key'] ) );
             $settings = Settings::get_instance();
             $data     = $settings->get( $key );
 
@@ -363,13 +387,18 @@ class Admin {
      * AJAX Get Templately Templates
      */
     public function templates() {
-        if ( ! isset( $_POST['admin_nonce'] ) || ! wp_verify_nonce( $_POST['admin_nonce'], 'admin-nonce' ) ) {
+        if ( ! isset( $_POST['admin_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['admin_nonce'] ), 'admin-nonce' ) ) {
             wp_send_json_error( __( 'Nonce Error', 'essential-blocks' ) );
         }
+
+        if ( ! current_user_can( 'activate_plugins' ) ) {
+            wp_send_json_error( __( 'You are not authorized!', 'essential-blocks' ) );
+        }
+
         $headers = [
             'Content-Type' => 'application/json'
         ];
-        $query = "{
+        $query = '{
 			packs(plan_type: 2, per_page: 6){
 			  data{
 				id
@@ -379,14 +408,19 @@ class Admin {
                 slug
 			  }
 			}
-		  }";
-        $response = wp_remote_post( 'https://app.templately.com/api/plugin', [
-            'timeout' => 30,
-            'headers' => $headers,
-            'body'    => wp_json_encode( [
-                'query' => $query
-            ] )
-        ] );
+		  }';
+        $response = wp_remote_post(
+            'https://app.templately.com/api/plugin',
+            [
+                'timeout' => 30,
+                'headers' => $headers,
+                'body'    => wp_json_encode(
+                    [
+                        'query' => $query
+                    ]
+                )
+            ]
+        );
         if ( $response ) {
             wp_send_json_success( $response );
         } else {
@@ -398,25 +432,34 @@ class Admin {
      * AJAX Get Templately Templates
      */
     public function template_count() {
-        if ( ! isset( $_POST['admin_nonce'] ) || ! wp_verify_nonce( $_POST['admin_nonce'], 'admin-nonce' ) ) {
+        if ( ! isset( $_POST['admin_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['admin_nonce'] ), 'admin-nonce' ) ) {
             wp_send_json_error( __( 'Nonce Error', 'essential-blocks' ) );
         }
+        if ( ! current_user_can( 'activate_plugins' ) ) {
+            wp_send_json_error( __( 'You are not authorized!', 'essential-blocks' ) );
+        }
+
         $headers = [
             'Content-Type' => 'application/json'
         ];
-        $query = "{
+        $query = '{
 			getCounts {
                 key
                 value
             }
-		  }";
-        $response = wp_remote_post( 'https://app.templately.com/api/plugin', [
-            'timeout' => 30,
-            'headers' => $headers,
-            'body'    => wp_json_encode( [
-                'query' => $query
-            ] )
-        ] );
+		  }';
+        $response = wp_remote_post(
+            'https://app.templately.com/api/plugin',
+            [
+                'timeout' => 30,
+                'headers' => $headers,
+                'body'    => wp_json_encode(
+                    [
+                        'query' => $query
+                    ]
+                )
+            ]
+        );
         if ( $response ) {
             wp_send_json_success( $response );
         } else {

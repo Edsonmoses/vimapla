@@ -2,10 +2,10 @@
 Contributors: automattic, google, woocommerce
 Tags: woocommerce, google, listings, ads
 Requires at least: 5.9
-Tested up to: 6.2
+Tested up to: 6.3
 Requires PHP: 7.4
 Requires PHP Architecture: 64 Bits
-Stable tag: 2.5.0
+Stable tag: 2.5.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -111,26 +111,27 @@ Yes, you can run both at the same time, and we recommend it! In the US, advertis
 
 == Changelog ==
 
-= 2.5.0 - 2023-07-18 =
-* Tweak - Add Tip with information with Campaign assets are imported.
-* Tweak - Provide more detailed error reasons when unable to complete site verification for the Google Merchant Center account being connected in the onboarding flow.
+= 2.5.5 - 2023-09-05 =
+* Dev - Add E2E tests - Dashboard - Edit Free Listings.
+* Dev - Clean up workarounds for WooCommerce < 6.8.
+* Dev - Externalize all WooCommerce JavaScript packages via Dependency Extraction Webpack Plugin (DEWP) and remove the selective bundling implementation that gradually externalizes packages into DEWP.
+* Dev - Update DEWP related tools and docs.
+* Fix - Fix Taxonomy Attribute Mapping for Product Variations.
 
-= 2.4.11 - 2023-07-11 =
-* Add - Client name and plugin version to requests.
-* Dev - Enable unit testing for PHP 8.1.
-* Dev - Set engines for the repository.
-* Fix - Avoid continuing to save settings to Google Merchant Center after the shipping time save failed on the Edit Free Listings page.
-* Fix - Avoid errors when clearing all audience countries in the onboarding flow.
-* Fix - Incorrectly display South America in the audience location selector after selecting Saudi Arabia.
-* Fix - Remove deprecated $border-width-focus variable.
-* Fix - Show a general error message when the phone number verification request is failed.
-* Tweak - Add placeholder in the Attribute Mapping table when there are no rules available.
-* Tweak - Changes for title, descriptions and FAQ in PMAX Optimized Campaigns.
-* Tweak - Make some error messages clearer when errors occur in querying or modifying data.
-* Tweak - Make the error message clearer for errors that occur in getting or updating a Google Merchant Center account.
-* Tweak - WC 7.9 compatibility.
+= 2.5.4 - 2023-08-29 =
+* Dev - Override vulnerability packages: xmlhttprequest-ssl and ws.
+* Dev - Update trigger method in Hooks Generator Workflow.
 
-= 2.4.10 - 2023-06-13 =
-* Tweak - WC 7.8 compatibility.
+= 2.5.3 - 2023-08-22 =
+* Dev - Add Action for Hooks Documentation Generator.
+* Dev - Allow E2E testing with Release Candidates.
+* Dev - Convert E2E tests from Puppeteer to Playwright.
+* Dev - Externalize all WordPress JavaScript packages via Dependency Extraction Webpack Plugin (DEWP).
+* Dev - Fetch WooCommerce L-1 versions for our tests.
+* Dev - Remove legacy HooksDocsGenerator.php file.
+* Dev - Use `merge-trunk-develop-pr` action.
+* Tweak - Apply consistent admin theme colors to common UI components.
+* Update - Google API Client Services package to v0.312.
+* Update - Google Ads library to API V14. (package v19.2.0).
 
 [See changelog for all versions](https://raw.githubusercontent.com/woocommerce/google-listings-and-ads/trunk/changelog.txt).

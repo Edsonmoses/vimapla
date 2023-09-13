@@ -120,26 +120,24 @@ if ( ! function_exists( 'dokan_page_navi' ) ) :
 
         $prevposts = get_previous_posts_link( __( '&larr; Previous', 'dokan-lite' ) );
         if ( $prevposts ) {
-            echo '<li>' . wp_kses( $prevposts, [ 'a' => [ 'href' => [] ] ] ) . '</li>';
+            echo '<li>' . esc_url( $prevposts ) . '</li>';
         } else {
             echo '<li class="disabled"><a href="#">' . esc_html__( '&larr; Previous', 'dokan-lite' ) . '</a></li>';
         }
+
         for ( $i = $start_page; $i <= $end_page; $i++ ) {
-            if ( (int) $i === $paged ) {
+            if ( $i === $paged ) {
                 echo '<li class="active"><a href="#">' . esc_html( $i ) . '</a></li>';
             } else {
                 echo '<li><a href="' . esc_url( get_pagenum_link( $i ) ) . '">' . esc_html( number_format_i18n( $i ) ) . '</a></li>';
             }
         }
 
-        if ( (int) $paged < $max_page ) {
-            echo '<li class="">';
-            next_posts_link( __( 'Next &rarr;', 'dokan-lite' ) );
-            echo '</li>';
-        } else {
-            echo '<li class="disabled"><a href="#">' . esc_html__( 'Next &rarr;', 'dokan-lite' ) . '</a></li>';
-        }
-        if ( (int) $paged < $max_page ) {
+        echo '<li class="">';
+        next_posts_link( __( 'Next &rarr;', 'dokan-lite' ) );
+        echo '</li>';
+
+        if ( $end_page < $max_page ) {
             $last_page_text = '&raquo;';
             echo '<li class="next"><a href="' . esc_url( get_pagenum_link( $max_page ) ) . '" title="Last">' . esc_html( $last_page_text ) . '</a></li>';
         }

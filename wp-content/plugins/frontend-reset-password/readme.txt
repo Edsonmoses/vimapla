@@ -80,6 +80,9 @@ You can customise **Frontend Reset Password** on the Plugins, Frontend Reset Pas
 
 == Changelog ==
 
+= 1.2.2 - 1st August 2023 =
+* MOD: Lost Password Form - Accessibility
+
 = 1.2.1 - 8th November 2022 =
 * MOD: Updated branding to match WP Enhanced
 * MOD: Updated "tested up to" so its not out of date anymore

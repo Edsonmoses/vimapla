@@ -71,12 +71,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                         </label>
                     </div>
 
-                    <# if( data.haselementor === 'yes' ){ #>
                     <div class="woolentor-template-edit-set-default-field woolentor-template-edit-set-design">
                         <label>{{{data.heading.sampledata.visibility}}}</label>
                         <span class="woolentor-template-edit-eye-icon dashicons dashicons-visibility"></span>
                     </div>
-                    <# } #>
 
                 </div>
 

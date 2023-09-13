@@ -169,6 +169,7 @@ const Edit = ({
                         image: "",
                         isExpanded: true,
                         isDefault: true,
+                        customId: "",
                     },
                     {
                         text: "Tab Title 2",
@@ -178,6 +179,7 @@ const Edit = ({
                         image: "",
                         isExpanded: false,
                         isDefault: false,
+                        customId: "",
                     },
                     {
                         text: "Tab Title 3",
@@ -187,6 +189,7 @@ const Edit = ({
                         image: "",
                         isExpanded: false,
                         isDefault: false,
+                        customId: "",
                     },
                 ],
             });
@@ -726,12 +729,6 @@ const Edit = ({
 
 		.${blockId}.eb-advanced-tabs-wrapper .eb-tabs-nav ul.tabTitles[data-tabs-ul-id=${blockId}] li.active:hover .tab-title-text{
 			${actHvTextColor ? `color:${actHvTextColor};` : ""}
-		}
-
-		.${blockId}.eb-advanced-tabs-wrapper .eb-tab-wrapper[data-tab-id="${
-        (tabTitles.find((item) => item.isDefault) || { id: "1" }).id
-    }"][data-tab-parent-id="${blockId}"]{
-			display:block;
 		}
 
 

@@ -33,7 +33,9 @@ class Quick_View_Manager{
             $post    = get_post( $id );
             $product = wc_get_product( $id );
             if ( $product ) { 
+                echo "<div class='woolentorquickview-content-template ".$product->get_type()."'>";
                 include ( apply_filters( 'woolentor_quickview_tmp', WOOLENTOR_ADDONS_PL_PATH.'includes/quickview-content.php' ) ); 
+                echo "</div>";
             }
         }
         wp_die();

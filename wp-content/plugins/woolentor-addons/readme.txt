@@ -2,8 +2,8 @@
 Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, tarekht, aslamhasib
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
-Tested up to: 6.2
-Stable tag: 2.6.4
+Tested up to: 6.3
+Stable tag: 2.6.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1076,6 +1076,28 @@ Feel free to [Contact us](https://hasthemes.com/contact-us/)
 Elementor Pro is not required. But you can use ShopLentor with Elementor free & Pro.
 
 == Changelog ==
+
+= Version: 2.6.8 - Date: 27-08-2023 =
+* Added : Popup template import functionality has been added.
+* Solved : Demo template showing issue in template add screen with popup builder module.
+* Solved : Product current query issue for shop page.
+* Solved : Gutenbarge block editor some field style issue.
+
+= Version: 2.6.7 - Date: 21-08-2023 =
+* Added : Product Meta Data show in Shopify like checkout module.
+* Added : Sort By product filter label change option in product Vertical and Horizontal product filter addon.
+* Added : QuickView close if click on outside and cross icon.
+* Added : Popup Builder Module.
+* Solved : Product ordering issue in default archive addon.
+* Compatibility : Compatibility with latest WooCommerce and Elementor Version.
+
+= Version: 2.6.6 - Date: 31-07-2023 =
+* Solved : HTML Tag name spelling issue in shopify like module.
+* Solved : Sample template showing issue has been solved.
+* Solved : External product redirect issue from QuickView popup.
+* Solved : External product add to cart button issue with single product ajax add to cart module.
+* Solved : Dimension field style issue for Gutenberg.
+* Compatibility : With latest WooComemrce and Latest WordPress version.
 
 = Version: 2.6.5 - Date: 08-07-2023 =
 * Compatibility : Wishlist button Compatibility with WC FSE blocks.

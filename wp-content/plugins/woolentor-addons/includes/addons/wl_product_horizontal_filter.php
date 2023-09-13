@@ -83,6 +83,31 @@ class Woolentor_Wl_Product_Horizontal_Filter_Widget extends Widget_Base {
                 ]
             );
 
+            $repeater->add_control(
+                'sort_by_asc_lavel', 
+                [
+                    'label' => esc_html__( 'Ascending order label', 'woolentor' ),
+                    'type' => Controls_Manager::TEXT,
+                    'label_block' => true,
+                    'default' => esc_html__('ASC','woolentor'),
+                    'condition'=>[
+                        'wl_filter_type' => 'sort_by'
+                    ]
+                ]
+            );
+            $repeater->add_control(
+                'sort_by_desc_lavel', 
+                [
+                    'label' => esc_html__( 'Descending order label', 'woolentor' ),
+                    'type' => Controls_Manager::TEXT,
+                    'label_block' => true,
+                    'default' => esc_html__('DESC','woolentor'),
+                    'condition'=>[
+                        'wl_filter_type' => 'sort_by'
+                    ]
+                ]
+            );
+
             $repeater->add_responsive_control(
                 'wl_filter_width',
                 [
@@ -945,6 +970,8 @@ class Woolentor_Wl_Product_Horizontal_Filter_Widget extends Widget_Base {
 
                                             if( 'sort_by' === $filter_item['wl_filter_type'] ){
                                                 $wlsort = ( isset( $_GET['wlsort'] ) && !empty( $_GET['wlsort'] ) ) ? $_GET['wlsort'] : '';
+                                                $sort_by_asc_lavel = isset( $filter_item['sort_by_asc_lavel'] ) ? $filter_item['sort_by_asc_lavel'] : 'ASC';
+                                                $sort_by_desc_lavel = isset( $filter_item['sort_by_desc_lavel'] ) ? $filter_item['sort_by_desc_lavel'] : 'DESC';
                                             ?>
                                                 <div class="woolentor-filter-single-item woolentor-states-input-auto elementor-repeater-item-<?php echo $filter_item['_id']; ?>">
                                                     <?php echo $filter_label; ?>
@@ -952,8 +979,8 @@ class Woolentor_Wl_Product_Horizontal_Filter_Widget extends Widget_Base {
                                                         <?php
                                                             if( !empty( $filter_item['wl_filter_placeholder'] ) ){echo '<option></option>';}
                                                         ?>
-                                                        <option value="&wlsort=ASC" <?php selected( 'ASC', $wlsort, true ); ?> ><?php echo esc_html__( 'ASC', 'woolentor' ); ?></option>
-                                                        <option value="&wlsort=DESC" <?php selected( 'DESC', $wlsort, true ); ?> ><?php echo esc_html__( 'DESC', 'woolentor' ); ?></option>
+                                                        <option value="&wlsort=ASC" <?php selected( 'ASC', $wlsort, true ); ?> ><?php echo esc_html__( $sort_by_asc_lavel, 'woolentor' ); ?></option>
+                                                        <option value="&wlsort=DESC" <?php selected( 'DESC', $wlsort, true ); ?> ><?php echo esc_html__( $sort_by_desc_lavel, 'woolentor' ); ?></option>
                                                     </select>
                                                 </div>
                                             <?php

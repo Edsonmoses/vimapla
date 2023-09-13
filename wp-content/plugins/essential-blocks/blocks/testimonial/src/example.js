@@ -1,7 +1,7 @@
 const Example = {
 	attributes: {
 		imageUrl:
-        EssentialBlocksLocalize?.eb_plugins_url + "assets/images/gallery-images/user.jpg"
+        EssentialBlocksLocalize?.eb_plugins_url + "assets/images/user.jpg"
 	}
 };
 

@@ -108,6 +108,11 @@ class Woolentor_Module_Manager{
             }
         }
 
+        // Popup Builder
+        if( woolentor_get_option( 'enable', 'woolentor_popup_builder_settings', 'off' ) == 'on' ){
+            require_once( WOOLENTOR_ADDONS_PL_PATH .'includes/modules/popup-builder/class-popup-builder.php' );
+        }
+
         // Flash Sale
         if( woolentor_get_option( 'enable', 'woolentor_flash_sale_settings', 'off' ) == 'on' ){
             require_once( WOOLENTOR_ADDONS_PL_PATH .'includes/modules/flash-sale/class.flash-sale.php' );
@@ -158,6 +163,12 @@ class Woolentor_Module_Manager{
 
             // Product Filter
             $this->include_product_filter_module_file();
+
+            // Popup Builder Pro
+            $popup_builder_pro_module_file = WOOLENTOR_ADDONS_PL_PATH_PRO .'includes/modules/popup-builder-pro/class-popup-builder-pro.php';
+            if( (  woolentor_get_option( 'enable', 'woolentor_popup_builder_settings', 'off' ) == 'on' && file_exists($popup_builder_pro_module_file) )){
+                require_once( $popup_builder_pro_module_file );
+            }
             
 
         }

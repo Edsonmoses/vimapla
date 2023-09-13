@@ -8,40 +8,47 @@ use EssentialBlocks\Utils\HttpRequest;
 class OpenVerse extends ThirdPartyIntegration {
     /**
      * Base URL for Openverse API
+     *
      * @var string
      */
     const URL = 'https://api.openverse.engineering/';
 
     public function __construct() {
-        $this->add_ajax( [
-            'eb_get_collections'      => [
-                'callback' => 'collections',
-                'public'   => false
-            ],
-            'eb_get_item'             => [
-                'callback' => 'get_item',
-                'public'   => false
-            ],
-            'eb_get_registration'     => [
-                'callback' => 'registration',
-                'public'   => false
-            ],
-            'eb_openverse_token'      => [
-                'callback' => 'generate_token',
-                'public'   => false
-            ],
-            'openverse_email_name_DB' => [
-                'callback' => 'get_siteinfo',
-                'public'   => false
+        $this->add_ajax(
+            [
+                'eb_get_collections'      => [
+                    'callback' => 'collections',
+                    'public'   => false
+                ],
+                'eb_get_item'             => [
+                    'callback' => 'get_item',
+                    'public'   => false
+                ],
+                'eb_get_registration'     => [
+                    'callback' => 'registration',
+                    'public'   => false
+                ],
+                'eb_openverse_token'      => [
+                    'callback' => 'generate_token',
+                    'public'   => false
+                ],
+                'openverse_email_name_DB' => [
+                    'callback' => 'get_siteinfo',
+                    'public'   => false
+                ]
             ]
-        ]);
+        );
     }
 
     /**
      * Generate token from Openverse API.
+     *
      * @return void
      */
     public function generate_token() {
+        if ( ! current_user_can( 'activate_plugins' ) ) {
+            wp_send_json_error( __( 'You are not authorized!', 'essential-blocks' ) );
+        }
         $response = $this->generate_openverse_token();
         wp_send_json( $response );
     }
@@ -52,6 +59,9 @@ class OpenVerse extends ThirdPartyIntegration {
     public function registration() {
         if ( ! wp_verify_nonce( sanitize_key( $_POST['admin_nonce'] ), 'admin-nonce' ) ) {
             die( esc_html__( 'Nonce did not match', 'essential-blocks' ) );
+        }
+        if ( ! current_user_can( 'activate_plugins' ) ) {
+            wp_send_json_error( __( 'You are not authorized!', 'essential-blocks' ) );
         }
 
         $name  = sanitize_text_field( Helper::is_isset( 'openverseName' ) );
@@ -72,12 +82,15 @@ class OpenVerse extends ThirdPartyIntegration {
         $response_array = is_object( $response ) ? get_object_vars( $response ) : $response;
 
         if ( isset( $response_array['client_id'], $response_array['client_secret'], $response_array['name'] ) ) {
-            $this->settings()->save( 'openverseApi', [
-                'client_id'     => $response_array['client_id'],
-                'client_secret' => $response_array['client_secret'],
-                'name'          => $response_array['name'],
-                'email'         => $email
-            ] );
+            $this->settings()->save(
+                'openverseApi',
+                [
+                    'client_id'     => $response_array['client_id'],
+                    'client_secret' => $response_array['client_secret'],
+                    'name'          => $response_array['name'],
+                    'email'         => $email
+                ]
+            );
         }
 
         wp_send_json( $response );
@@ -91,6 +104,9 @@ class OpenVerse extends ThirdPartyIntegration {
     public function get_siteinfo() {
         if ( ! wp_verify_nonce( sanitize_key( $_POST['admin_nonce'] ), 'admin-nonce' ) ) {
             die( esc_html__( 'Nonce did not match', 'essential-blocks' ) );
+        }
+        if ( ! current_user_can( 'activate_plugins' ) ) {
+            wp_send_json_error( __( 'You are not authorized!', 'essential-blocks' ) );
         }
 
         /**
@@ -169,7 +185,7 @@ class OpenVerse extends ThirdPartyIntegration {
         }
 
         if ( isset( $_POST['image_url'] ) ) {
-            $file = esc_url_raw( $_POST['image_url'] );
+            $file = sanitize_url( $_POST['image_url'] );
         }
 
         $filename = basename( $file );
@@ -208,7 +224,7 @@ class OpenVerse extends ThirdPartyIntegration {
                     'grant_type'    => 'client_credentials'
                 ],
                 // 'headers' => [
-                //     'Content-Type' => 'multipart/form-data',
+                // 'Content-Type' => 'multipart/form-data',
                 // ],
                 'timeout' => 240
             ]

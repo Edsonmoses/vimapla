@@ -28,7 +28,7 @@ $field_class     = dokan_is_seller_dashboard() ? 'dokan-w5' : '';
     <div class="<?php echo esc_attr( $field_class ); ?> dokan-text-left dokan-address-fields">
         <?php if ( $seller_address_fields['street_1'] ) { ?>
             <div class="dokan-form-group">
-                <label class="control-label" for="dokan_address[street_1]"><?php esc_html_e( 'Street ', 'dokan-lite' ); ?>
+                <label class="control-label" for="dokan_address[street_1]"><?php esc_html_e( 'District ', 'dokan-lite' ); ?>
                     <?php
                     $required_attr = '';
                     if ( $seller_address_fields['street_1']['required'] ) {
@@ -41,32 +41,12 @@ $field_class     = dokan_is_seller_dashboard() ? 'dokan-w5' : '';
                     id="dokan_address[street_1]"
                     value="<?php echo esc_attr( $address_street1 ); ?>"
                     name="dokan_address[street_1]"
-                    placeholder="<?php esc_attr_e( 'Street address', 'dokan-lite' ); ?>"
+                    placeholder="<?php esc_attr_e( 'District', 'dokan-lite' ); ?>"
                     class="dokan-form-control input-md" type="text">
             </div>
             <?php
         }
-        if ( $seller_address_fields['street_2'] ) {
-            ?>
-            <div class="dokan-form-group">
-                <label class="control-label" for="dokan_address[street_2]"><?php esc_html_e( 'Street 2', 'dokan-lite' ); ?>
-                    <?php
-                    $required_attr = '';
-                    if ( $seller_address_fields['street_2']['required'] ) {
-                        $required_attr = 'required';
-                        ?>
-                        <span class="required"> *</span>
-                    <?php } ?>
-                </label>
-                <input <?php echo esc_attr( $required_attr ); ?> <?php echo esc_attr( $disabled ); ?>
-                    id="dokan_address[street_2]"
-                    value="<?php echo esc_attr( $address_street2 ); ?>"
-                    name="dokan_address[street_2]"
-                    placeholder="<?php esc_attr_e( 'Apartment, suite, unit etc. (optional)', 'dokan-lite' ); ?>"
-                    class="dokan-form-control input-md" type="text">
-            </div>
-            <?php
-        }
+       
         if ( $seller_address_fields['city'] || $seller_address_fields['zip'] ) {
             ?>
             <div class="dokan-from-group">
@@ -130,7 +110,7 @@ $field_class     = dokan_is_seller_dashboard() ? 'dokan-w5' : '';
                         <span class="required"> *</span>
                     <?php } ?>
                 </label>
-                <select <?php echo esc_attr( $required_attr ); ?> <?php echo esc_attr( $disabled ); ?> name="dokan_address[country]" class="country_to_state dokan-form-control" id="dokan_address_country">
+                <select <?php echo esc_attr( $required_attr ); ?> <?php echo esc_attr( $disabled ); ?> name="dokan_address[country]" class="country_to_state dokan-form-control input-md" id="dokan_address_country">
                     <?php dokan_country_dropdown( $countries, $address_country, false ); ?>
                 </select>
             </div>
@@ -150,7 +130,7 @@ $field_class     = dokan_is_seller_dashboard() ? 'dokan-w5' : '';
             }
             ?>
             <div id="dokan-states-box" class="dokan-form-group">
-                <label class="control-label" for="dokan_address[state]"><?php esc_html_e( 'State ', 'dokan-lite' ); ?>
+                <label class="control-label" for="dokan_address[state]"><?php esc_html_e( 'State/County ', 'dokan-lite' ); ?>
                     <?php
                     $required_attr = '';
                     if ( $seller_address_fields['state']['required'] ) {
@@ -168,7 +148,7 @@ $field_class     = dokan_is_seller_dashboard() ? 'dokan-w5' : '';
                     ?>
                     <input <?php echo esc_attr( $required_attr ); ?> <?php echo esc_attr( $disabled ); ?>
                         name="dokan_address[state]"
-                        class="dokan-form-control <?php echo esc_attr( $address_state_class ); ?>"
+                        class="dokan-form-control input-md <?php echo esc_attr( $address_state_class ); ?>"
                         id="dokan_address_state"
                         value="<?php echo esc_attr( $address_state ); ?>"/>
                     <?php

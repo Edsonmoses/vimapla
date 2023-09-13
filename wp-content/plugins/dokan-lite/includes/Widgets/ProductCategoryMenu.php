@@ -41,7 +41,7 @@ class ProductCategoryMenu extends WP_Widget {
         ?>
             <div class="product-cat-stack-dokan cat-drop-stack">
                 <?php
-                $term_args = apply_filters(
+                $args = apply_filters(
                     'dokan_category_widget', array(
 						'hide_empty' => false,
 						'orderby' => 'name',
@@ -49,7 +49,12 @@ class ProductCategoryMenu extends WP_Widget {
                     )
                 );
 
-                $categories = get_terms( 'product_cat', $term_args );
+                $categories = get_terms( 'product_cat', $args );
+
+                $args = array(
+                    'taxonomy' => 'product_cat',
+                    'selected_cats' => '',
+                );
 
                 $walker = new CategoryWalker();
                 echo '<ul>';

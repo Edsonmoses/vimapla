@@ -27,6 +27,10 @@ export default function save({ attributes }) {
                                 <li
                                     key={index}
                                     data-title-tab-id={item.id}
+                                    data-title-custom-id={item.customId}
+                                    {...(item.customId
+                                        ? { id: item.customId }
+                                        : {})}
                                     className={
                                         item.isDefault ? "active" : "inactive"
                                     }

@@ -151,7 +151,7 @@ export default function Edit(props) {
 		let widthPerChildMobile = (100).toFixed(2);
 
 		const getBlock = select('core/block-editor').getBlocksByClientId(clientId)[0];
-		const getBlockInnerBlocks = getBlock.innerBlocks ? getBlock.innerBlocks : [];
+		const getBlockInnerBlocks = getBlock?.innerBlocks ? getBlock.innerBlocks : [];
 		let innerBlocks = [...getBlockInnerBlocks];
 
 		// If total rows are more than 6, then remove the extra rows

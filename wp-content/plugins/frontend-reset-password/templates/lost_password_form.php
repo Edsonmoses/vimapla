@@ -43,9 +43,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 
 			<p class="no-margin">
-				<label for="email"><?php _e( 'Email Address or Username', 'frontend-reset-password' ); ?></label>
-				<input type="text" name="somfrp_user_info" id="somfrp_user_info">
+				<label for="somfrp_user_info"><?php _e( 'Email Address or Username', 'frontend-reset-password' ); ?></label>
+				<input type="text" name="somfrp_user_info" id="somfrp_user_info" required autocomplete="username">
 			</p>
+			
 
 			<div class="lostpassword-submit">
 				<?php wp_nonce_field( 'somfrp_lost_pass', 'somfrp_nonce' ); ?>

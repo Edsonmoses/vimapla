@@ -80,7 +80,7 @@
 
 <?php do_action( 'dokan_reg_form_field' ); ?>
 
-<?php /*<p class="form-row form-group user-role vendor-customer-registration">
+<p class="form-row form-group user-role vendor-customer-registration">
 
     <label class="radio">
         <input type="radio" name="role" value="customer"<?php checked( $role, 'customer' ); ?>>
@@ -93,17 +93,4 @@
     </label>
     <?php do_action( 'dokan_registration_form_role', $role ); ?>
 
-</p>*/ ?>
-<p class="form-row form-group form-row-wide">
-    <label for="shop-country"><?php esc_html_e( 'Country', 'dokan-custom-country' ); ?><span class="required">*</span></label>
-    <input type="text" class="input-text form-control" name="country_name" id="country_name" value="<?php if ( ! empty( $postdata['country_id'] ) ) echo esc_attr($postdata['country_name']); ?>" required="required" />
 </p>
-<p class="form-row form-group form-row-wide">
-    <label for="shop-district"><?php esc_html_e( 'District', 'dokan-custom-district' ); ?><span class="required">*</span></label>
-    <input type="text" class="input-text form-control" name="district_name" id="district_name" value="<?php if ( ! empty( $postdata['district_id'] ) ) echo esc_attr($postdata['district_name']); ?>" required="required" />
-</p>
-<p class="form-row form-group form-row-wide">
-    <label for="shop-city"><?php esc_html_e( 'City', 'dokan-custom-city' ); ?><span class="required">*</span></label>
-    <input type="text" class="input-text form-control" name="city_name" id="city_name" value="<?php if ( ! empty( $postdata['city_id'] ) ) echo esc_attr($postdata['city_name']); ?>" required="required" />
-</p>
-

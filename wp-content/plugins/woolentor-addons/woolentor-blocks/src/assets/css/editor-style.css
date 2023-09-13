@@ -291,6 +291,7 @@ button.components-button.woolentor-elements-tab-menu-item.tab-menu-active{
     flex-flow: row wrap;
     flex-direction: column-reverse;
     margin: 0 !important;
+    padding: 0 !important;
 }
 .wp-block-selector-woolentor-dimensions-control .components-base-control__label{
     margin-bottom: -3px;
@@ -314,7 +315,7 @@ button.components-button.woolentor-elements-tab-menu-item.tab-menu-active{
 .wp-block-selector-woolentor-dimensions-control button.components-button.has-icon{
     height: 100%;
     width: auto;
-    padding: 4px 3px;
+    padding: 2px 3px;
     border-radius: 0;
     border: 1px solid #d5dadf;
     min-width: 45px;
@@ -548,7 +549,6 @@ label.woolentor-control-title {
 .woolentor-field-section .components-circular-option-picker {
     min-width: auto;
     margin-top: 0;
-    /* margin-left: 8px; */
     width: auto;
     padding: 0;
 }
@@ -565,20 +565,20 @@ label.woolentor-control-title {
 .woolentor-field-wrap .components-dropdown {
     width: 25px;
 }
-.woolentor-field-wrap .components-color-palette__custom-color{
+.woolentor-field-wrap .components-color-palette__custom-color,.woolentor-field-wrap .components-color-palette__custom-color-button{
     font-size: 0;
     height: 24px;
     background-size: 10px 10px;
     box-shadow: 0 0 0 1px #cccccc !important;
 }
-.woolentor-field-wrap .components-circular-option-picker__swatches{
+.woolentor-field-wrap .components-circular-option-picker__swatches,.woolentor-field-wrap .components-color-palette__custom-color-text-wrapper{
     display: none;
 }
 .woolentor-field-wrap button.components-circular-option-picker__clear{
     position: relative;
     font-size: 0;
     box-shadow: none !important;
-    height: auto;
+    height: 24px;
 }
 .woolentor-field-wrap button.components-circular-option-picker__clear:before {
     content: "\f531";
@@ -587,6 +587,10 @@ label.woolentor-control-title {
     top: 0;
     font-size: 16px;
     font-family: 'dashicons';
+}
+.woolentor-field-wrap .components-color-palette__custom-color-button:after {
+    background-position: 0 0, 6px 6px;
+    background-size: 12px 12px;
 }
 /* Toggle Control */
 .woolentor-field-wrap .components-base-control,.woolentor-field-wrap .components-base-control__field{

@@ -103,21 +103,15 @@ export default function Edit(props) {
 
     const getStrings = (typedText) => {
         let strings = [];
-        typedText.map((item) => strings.push(item.text));
+        if (typeof typedText === 'object' && typedText.length > 0) {
+            typedText.map((item) => strings.push(item.text));
+        }
+        else {
+            strings = ["first string", "second string"];
+        }
+
         return strings;
     };
-
-    useEffect(() => {
-        const options = generateOptions();
-        const new_typed = new Typed(block.current, options);
-        setTyped(new_typed);
-        return () => {
-            // Destroy Typed instance
-            if (typed) {
-                typed.destroy();
-            }
-        };
-    }, []);
 
     useEffect(() => {
         if (typed) {
@@ -137,7 +131,20 @@ export default function Edit(props) {
         showCursor,
     ]);
 
+
+    // this useEffect is for creating an unique id for each block's unique className by a random unique number
     useEffect(() => {
+        //Hanlde duplicate issues
+        const BLOCK_PREFIX = "eb-typing-text";
+        duplicateBlockIdFix({
+            BLOCK_PREFIX,
+            blockId,
+            setAttributes,
+            select,
+            clientId,
+        });
+
+        //Set Default "typedText"
         if (typedText.length > 0) return;
 
         const defaultTypedText = [
@@ -152,18 +159,16 @@ export default function Edit(props) {
         setAttributes({ typedText: defaultTypedText });
         setAttributes({ prefix: "This is the " });
         setAttributes({ suffix: "of the sentence." });
-    }, []);
 
-    // this useEffect is for creating an unique id for each block's unique className by a random unique number
-    useEffect(() => {
-        const BLOCK_PREFIX = "eb-typing-text";
-        duplicateBlockIdFix({
-            BLOCK_PREFIX,
-            blockId,
-            setAttributes,
-            select,
-            clientId,
-        });
+        //Init Typed class execute
+        const new_typed = new Typed(block.current, generateOptions());
+        setTyped(new_typed);
+        return () => {
+            // Destroy Typed instance
+            if (typed) {
+                typed.destroy();
+            }
+        };
     }, []);
 
     const blockProps = useBlockProps({

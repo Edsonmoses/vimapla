@@ -5,6 +5,10 @@
  * @package WPCode
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_shortcode( 'wpcode', 'wpcode_shortcode_handler' );
 add_action( 'wpcode_shortcode_before_output', 'wpcode_pass_shortcode_attributes_to_snippet', 10, 4 );
 

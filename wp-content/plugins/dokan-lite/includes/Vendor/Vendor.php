@@ -14,39 +14,6 @@ use WP_User;
  * @since 2.6.10
  */
 class Vendor {
-    /**
-     * Set class public properties
-     *
-     * @since 3.7.19
-     *
-     * @return void
-     */
-    public function __set( $key, $value ) {
-        // exclude private properties from accessing directly
-        if ( in_array( $key, [ 'shop_data', 'changes' ], true ) ) {
-            return;
-        }
-        $this->{$key} = $value;
-    }
-
-    /**
-     * Get public properties
-     *
-     * @since 3.7.19
-     *
-     * @return mixed|null
-     */
-    public function __get( $key ) {
-        // exclude private properties from accessing directly
-        if ( in_array( $key, [ 'shop_data', 'changes' ], true ) ) {
-            return null;
-        }
-        // check isset
-        if ( isset( $this->{$key} ) ) {
-            return $this->{$key};
-        }
-        return null;
-    }
 
     /**
      * The vendor ID
@@ -928,7 +895,7 @@ class Vendor {
             ORDER BY wc.comment_post_ID", $this->id ) );
 
         $rating_value = apply_filters( 'dokan_seller_rating_value', array(
-            'rating' => number_format( (float) $result->average, 2 ),
+            'rating' => number_format( $result->average, 2 ),
             'count'  => (int) $result->count
         ), $this->id );
 
@@ -983,13 +950,11 @@ class Vendor {
      *
      * @since 2.8.0
      *
-     * @return array
+     * @return void
      */
     public function make_active() {
         $this->update_meta( 'dokan_enable_selling', 'yes' );
-
-        // change product status to publish
-        $this->change_product_status( 'revert' );
+        $this->change_product_status( 'publish' );
 
         do_action( 'dokan_vendor_enabled', $this->get_id() );
 
@@ -1001,13 +966,11 @@ class Vendor {
      *
      * @since 2.8.0
      *
-     * @return array
+     * @return void
      */
     public function make_inactive() {
         $this->update_meta( 'dokan_enable_selling', 'no' );
-
-        // change product status to pending
-        $this->change_product_status( 'change_status' );
+        $this->change_product_status( 'pending' );
 
         do_action( 'dokan_vendor_disabled', $this->get_id() );
 
@@ -1015,20 +978,39 @@ class Vendor {
     }
 
     /**
-     * Change product status when toggling seller active status
+     * Chnage product status when toggling seller active status
      *
      * @since 2.6.9
-     * @since 3.7.18 introduced new bg process to change product status
      *
-     * @param string $task_type
+     * @param int $seller_id
+     * @param string $status
      *
      * @return void
      */
-    public function change_product_status( $task_type ) {
-        $product_status_changer = dokan()->bg_process->change_vendor_product_status;
-        $product_status_changer->reset();
-        $product_status_changer->set_vendor_id( $this->get_id() );
-        $product_status_changer->add_to_queue( $task_type );
+    function change_product_status( $status ) {
+        $args = array(
+            'post_type'      => 'product',
+            'post_status'    => ( $status == 'pending' ) ? 'publish' : 'pending',
+            'posts_per_page' => -1,
+            'author'         => $this->get_id(),
+            'orderby'        => 'post_date',
+            'order'          => 'DESC'
+        );
+
+        $product_query = new WP_Query( $args );
+        $products = $product_query->get_posts();
+
+        if ( $products ) {
+            foreach ( $products as $pro ) {
+                if ( 'publish' != $status ) {
+                    update_post_meta( $pro->ID, 'inactive_product_flag', 'yes' );
+                }
+
+                wp_update_post( array( 'ID' => $pro->ID, 'post_status' => $status ) );
+            }
+            // delete product cache
+            ProductCache::delete( $this->get_id() );
+        }
     }
 
     /**
